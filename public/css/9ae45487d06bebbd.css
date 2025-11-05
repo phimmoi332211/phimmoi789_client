@@ -560,7 +560,7 @@ background: #fff;
 }
 
 #wrapper {
-    padding-bottom: 10rem;
+    /* padding-bottom: 10rem; */
     padding-top: 10rem;
     min-height: calc(100vh - 400px)
 }

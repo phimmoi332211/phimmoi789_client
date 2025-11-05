@@ -18,7 +18,7 @@ const TopicGrid: React.FC<TopicGridProps> = ({ topics }) => {
       <div className="fluid-gap">
         <div className="cards-row wide">
           <div className="row-header">
-            <h3 className="category-name">Bạn đang quan tâm gì?</h3>
+            <h1 className="category-name">Bạn đang quan tâm gì?</h1>
           </div>
           <div className="row-content">
             <div className="topics-list topics-grid">

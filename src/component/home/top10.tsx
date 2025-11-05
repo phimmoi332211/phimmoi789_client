@@ -6,6 +6,7 @@ import "swiper/css";
 import "swiper/css/navigation";
 import { MovieHoverTooltip, PortalTooltip } from "./MovieHoverTooltip";
 import Image from "next/image";
+import Link from "next/link";
 
 // Hàm tiện ích trích số tập, số tập đã phát hành, số phút
 function extractEpisodes(status: string, episode_total: string) {
@@ -35,6 +36,7 @@ function extractSeason(title: string) {
 
 interface Top10Props {
   movies: any[];
+  title: string;
 }
 
 // Chuẩn hoá dữ liệu phim mới về định dạng component đang dùng (GIỮ NGUYÊN UI)
@@ -59,7 +61,10 @@ const normalizeMovie = (m: any) => {
     slug: m?.slug || m?.url || "",
     title: m?.title || m?.name || "",
     name_english: m?.name_english || m?.origin_name || m?.name || "",
-    poster_url: m?.poster_url || m?.thumbnail || "",
+    poster_url: m?.image?.url || "",
+    alt: m?.image?.alt || "",
+    caption: m?.image?.caption || "",
+    title_image: m?.image?.title || "",
     quality: m?.quality,
     time: m?.time, // fallback nếu có
     duration: m?.duration, // số phút (dữ liệu mới)
@@ -77,7 +82,7 @@ const normalizeMovie = (m: any) => {
   };
 };
 
-const Top10: React.FC<Top10Props> = ({ movies }) => {
+const Top10: React.FC<Top10Props> = ({ movies, title }) => {
   const prevRef = useRef<HTMLButtonElement>(null);
   const nextRef = useRef<HTMLButtonElement>(null);
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
@@ -115,7 +120,7 @@ const Top10: React.FC<Top10Props> = ({ movies }) => {
       <div id="collection-top10">
         <div className="cards-row cards-slide wide">
           <div className="row-header">
-            <h2 className="category-name">Top 10 phim bộ hôm nay</h2>
+            <h2 className="category-name">{title}</h2>
           </div>
           <div className="row-content">
             <div
@@ -254,31 +259,31 @@ const Top10: React.FC<Top10Props> = ({ movies }) => {
                               </div>
                             </PortalTooltip>
                           )}
-                          <a
+                          <Link
                             className="v-thumbnail"
                             href={`/phim/${movie.slug}`}
                           >
                             <div className="mask"></div>
                             <div>
                               <Image
-                                alt={`Xem Phim ${movie.title} Vietsub HD Online`}
+                                alt={movie?.alt}
                                 loading="lazy"
                                 src={movie.poster_url}
                                 className="rounded-lg"
                                 fill
                               />
                             </div>
-                          </a>
+                          </Link>
                           <div className="info info-v w-chart">
                             <div className="number">{idx + 1}</div>
-                            <h4 className="item-title lim-1">
-                              <a
+                            <h2 className="item-title lim-1">
+                              <Link
                                 title={movie.title}
                                 href={`/phim/${movie.slug}`}
                               >
                                 {movie.title}
-                              </a>
-                            </h4>
+                              </Link>
+                            </h2>
                             <div className="alias-title lim-1">
                               {movie.name_english}
                             </div>

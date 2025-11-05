@@ -85,22 +85,37 @@ export default async function HomePage() {
 
   // Lấy phim điện ảnh mới  (slide phim)
   const slideMoviesRes: any = await fetchMovies({
+    page: 1,
     limit: 30,
+    movieCategory: "hoat-hinh"
   }).catch(() => ({ data: { data: { result: [] } } }));
-  const slideMovies = slideMoviesRes.data?.data?.result || [];
+  const slideMovies = slideMoviesRes.data?.movies || [];
 
   // Lấy top 10 phim bộ hôm nay (phim-bo)
-  const top10Res: any = await fetchMovies({
+  const dataMovieSeries: any = await fetchMovies({
+    page: 1,
     limit: 10,
+    movieType: "series",
+    sortBy: "newest",
   }).catch(() => ({ data: { data: { result: [] } } }));
-  const top10Movies = top10Res.data?.data?.result || [];
+  const movieSeries = dataMovieSeries.data?.movies || [];
+
+  // Lấy top 10 phim bộ hôm nay (phim-le)
+  const dataMovieSingle: any = await fetchMovies({
+    page: 1,
+    limit: 10,
+    movieType: "single",
+    sortBy: "newest",
+  }).catch(() => ({ data: { data: { result: [] } } }));
+  const movieSingle = dataMovieSingle.data?.movies || [];
 
   // Lấy anime (hoạt hình) từ API, truyền xuống AnimeSlide qua props
   const animeRes: any = await fetchMovies({
+    page: 1,
     limit: 10,
+    movieCategory: "hoat-hinh"
   }).catch(() => ({ data: { data: { result: [] } } }));
-
-  const animeSlideData = animeRes.data?.data?.result || [];
+  const animeSlideData = animeRes.data?.movies || [];
 
   return (
     <>
@@ -113,16 +128,20 @@ export default async function HomePage() {
         </div>
       </div>
       <BannerSlide slideData={slideData} />
-      {/* <TopicGrid topics={topics} />
+      {/* <TopicGrid topics={topics} /> */}
       <MovieList
         hanMovies={hanMovies}
         trungMovies={trungMovies}
         aumyMovies={aumyMovies}
       />
-      <Community />
+      {/* <Community /> */}
       <SlideFilm movies={slideMovies} />
-      <Top10 movies={top10Movies} />
-      <AnimeSlide animeSlideData={animeSlideData} /> */}
+      <Top10 movies={movieSingle} title={"Top 10 phim bộ hay nhất hôm nay/ tuần này/ tháng này"} />
+      <Top10 movies={movieSingle} title={"Top 10 phim lẻ hay nhất hôm nay/ tuần này/ tháng này"}/>
+      <Top10 movies={movieSingle} title={"Phim chiếu rạp đang HOT"}/>
+      <AnimeSlide animeSlideData={animeSlideData} />
+      <Top10 movies={movieSingle} title={"Bạn Nghĩ Mình Gan Sao? Xem Xong Phim Này Hãy Nói Tiếp"}/>
+      <Top10 movies={movieSingle} title={"Điện Ảnh Hồng Kông – Vị Cũ Không Bao Giờ Phai"}/>
     </>
   );
 }

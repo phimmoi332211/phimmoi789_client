@@ -47,7 +47,10 @@ function normalize(item: any) {
     slug: item?.slug || item?.url || "",
     title: item?.title || item?.name || "",
     name_english: item?.name_english || item?.origin_name || item?.name || "",
-    poster_url: item?.poster_url || item?.thumbnail || "",
+    poster_url: item?.image.url || "",
+    alt: item?.image?.alt || "",
+    caption: item?.image?.caption || "",
+    image_title: item?.image?.title || "",
     thumb_url: item?.thumb_url || item?.thumbnail || item?.poster_url || "",
     year: item?.year,
     time,
@@ -106,7 +109,7 @@ export default function AnimeSlide({
         <div className="cards-row big-slide wide">
           {/* Header */}
           <div className="row-header">
-            <h2 className="category-name">Kho Tàng Anime Mới Nhất</h2>
+            <h1 className="category-name">Thế giới Anime dành riêng cho bạn</h1>
             <div className="cat-more">
               <Link className="line-center" href="/list/hoat-hinh">
                 <span>Xem thêm</span>
@@ -141,7 +144,7 @@ export default function AnimeSlide({
                           <div className="cover-image relative w-full h-[500px]">
                             <Image
                               src={item.poster_url}
-                              alt={item.title}
+                              alt={item.alt}
                               fill
                               className="object-cover"
                               sizes="100vw"
@@ -153,11 +156,11 @@ export default function AnimeSlide({
                         <div className="safe-area">
                           <div className="slide-content">
                             <div className="media-item">
-                              <h3 className="media-title lim-1">
+                              <h2 className="media-title lim-1">
                                 <Link href={`/phim/${item.slug}`}>
                                   {item.title}
                                 </Link>
-                              </h3>
+                              </h2>
                               <h3 className="media-alias-title">
                                 <Link href={`/phim/${item.slug}`}>
                                   {item.name_english}

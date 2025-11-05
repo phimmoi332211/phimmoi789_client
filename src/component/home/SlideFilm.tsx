@@ -49,7 +49,7 @@ const SlideFilm: React.FC<SlideFilmProps> = ({ movies }) => {
   const mapTitle = (item: any) => item.title || item.name || "";
   const mapAlias = (item: any) =>
     item.name_english || item.origin_name || item.name || "";
-  const mapPoster = (item: any) => item.poster_url || item.thumbnail || "";
+  const mapPoster = (item: any) => item.image?.url || "";
   const mapCountryName = (item: any) =>
     item.country?.[0]?.name || item.country?.name || "";
 
@@ -94,7 +94,7 @@ const SlideFilm: React.FC<SlideFilmProps> = ({ movies }) => {
       <div id="collection-CGPoDx">
         <div className="cards-row cards-slide wide">
           <div className="row-header">
-            <h2 className="category-name">Phim Điện ảnh mới cóng</h2>
+            <h1 className="category-name">Hôm nay có gì mới?</h1>
             <div className="cat-more">
               <Link className="line-center" href="/phim-le">
                 <span>Xem thêm</span>
@@ -245,14 +245,14 @@ const SlideFilm: React.FC<SlideFilmProps> = ({ movies }) => {
                           </Link>
 
                           <div className="info mt-2">
-                            <h4 className="item-title lim-1">
+                            <h2 className="item-title lim-1">
                               <Link
                                 title={mapTitle(item)}
                                 href={`/phim/${mapSlug(item)}`}
                               >
                                 {mapTitle(item)}
                               </Link>
-                            </h4>
+                            </h2>
                             <h4 className="alias-title lim-1">
                               <Link
                                 title={mapAlias(item)}

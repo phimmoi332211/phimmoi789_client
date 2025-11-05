@@ -28,6 +28,10 @@ export const fetchMovies = async ({
   status,
   type,
   year,
+  sortBy,
+  movieType,
+  movieStatus,
+  movieCategory
 }: {
   page?: number;
   limit?: number;
@@ -39,6 +43,10 @@ export const fetchMovies = async ({
   country?: string;
   actor?: string;
   director?: string;
+  sortBy?: string;
+  movieType?: string;
+  movieStatus?: string;
+  movieCategory?: string;
 }) => {
   const query = {
     limit,
@@ -60,6 +68,11 @@ export const fetchMovies = async ({
               : type,
     }),
     ...(year && { year }),
+    ...(sortBy && { sortBy }),
+    ...(movieType && { movieType }),
+    ...(movieStatus && { movieStatus }),
+    ...(movieStatus && { movieStatus }),
+    ...(movieCategory && { movieCategory }),
   };
   return customFetch(CLIENT_ENDPOINTS.PUBLICS.MOVIES.LIST, "GET", query);
 };

@@ -1,21 +1,18 @@
 @import "tailwindcss";
-/* thêm vào globals.css */
+
+/* Reset Tailwind layer */
 .tailwind * {
-    all: revert-layer;
+  all: revert-layer;
 }
 
+/* 🎨 Màu nền */
 :root {
   --background: #ffffff;
   --foreground: #171717;
+  --font-sans: var(--font-roboto), system-ui, sans-serif;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
+/* 🌙 Dark mode */
 @media (prefers-color-scheme: dark) {
   :root {
     --background: #0a0a0a;
@@ -23,15 +20,31 @@
   }
 }
 
+/* ✍️ Áp dụng font mặc định */
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-sans);
 }
+
+/* 🧱 Áp dụng cho tất cả heading */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-sans);
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+/* Tailwind theme variables */
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-sans);
+}
+
+/* Swiper + custom UI giữ nguyên */
 .swiper {
   overflow: visible !important;
 }
-
 .swiper-slide {
   width: 239.2px;
   transition: transform 0.3s;
@@ -50,7 +63,6 @@ body {
   cursor: pointer;
   transition: opacity 0.3s;
 }
-
 .sw-button:disabled {
   opacity: 0.5;
   cursor: not-allowed;
@@ -62,43 +74,39 @@ body {
   border-radius: 8px;
   overflow: hidden;
 }
+
 .comm-wrap {
-  scrollbar-width: none; /* For Firefox */
-  -ms-overflow-style: none;  /* For Internet Explorer and Edge */
+  scrollbar-width: none;
+  -ms-overflow-style: none;
 }
 .comm-wrap::-webkit-scrollbar {
-  display: none; /* For Chrome, Safari, and Opera */
+  display: none;
 }
 
-
-
+/* Dropdown menu scrollbar */
 .v-dropdown-menu {
   max-height: 600px;
   overflow-y: auto;
 }
-
-/* Scrollbar cho Chrome, Edge, Safari */
 .v-dropdown-menu::-webkit-scrollbar {
   width: 8px;
-  background: #222;         /* Nền đen cho scrollbar track */
+  background: #222;
   border-radius: 4px;
 }
-
 .v-dropdown-menu::-webkit-scrollbar-thumb {
-  background: #444;         /* Màu cho phần kéo */
+  background: #444;
   border-radius: 4px;
-  border: 2px solid #222;   /* Bo viền tạo chiều sâu */
+  border: 2px solid #222;
 }
-
 .v-dropdown-menu::-webkit-scrollbar-thumb:hover {
-  background: #666;         /* Hover sáng hơn chút */
+  background: #666;
 }
-
-/* Scrollbar cho Firefox */
 .v-dropdown-menu {
   scrollbar-width: thin;
   scrollbar-color: #444 #222;
 }
+
+/* Intro overlay animation */
 .intro-overlay {
   position: fixed;
   top: 0;
@@ -110,12 +118,10 @@ body {
   overflow-y: auto;
   transition: transform 2s ease-in-out, opacity 2s ease-in-out;
 }
-
 .zoom-in {
   transform: scale(1);
   opacity: 1;
 }
-
 .zoom-out {
   transform: scale(0.9);
   opacity: 0;

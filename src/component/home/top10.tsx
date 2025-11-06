@@ -52,8 +52,8 @@ const normalizeMovie = (m: any) => {
       ? m?.status === "complete"
         ? `${total}/${total}`
         : total > 0
-        ? `1/${total}`
-        : ""
+          ? `1/${total}`
+          : ""
       : "1/1";
 
   return {
@@ -75,8 +75,8 @@ const normalizeMovie = (m: any) => {
     country: Array.isArray(m?.country)
       ? m.country
       : m?.country
-      ? [m.country]
-      : [],
+        ? [m.country]
+        : [],
     // giữ nguyên các field còn lại dùng trong tooltip
     ...m,
   };
@@ -268,7 +268,7 @@ const Top10: React.FC<Top10Props> = ({ movies, title }) => {
                               <Image
                                 alt={movie?.alt}
                                 loading="lazy"
-                                src={movie.poster_url}
+                                src={movie?.poster_url || "/default-avatar.jpg"}
                                 className="rounded-lg"
                                 fill
                               />

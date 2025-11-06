@@ -1,5 +1,5 @@
 // app/layout.tsx
-import { Geist, Geist_Mono } from "next/font/google";
+import { Roboto } from "next/font/google";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
@@ -13,10 +13,12 @@ import HeaderMobileSimple from "@/component/header/HeaderMobile";
 import Head from "./head";
 import { fetchMenus } from "@/help/helper";
 
-const geistSans = Geist({ variable: "--font-geist-sans", subsets: ["latin"] });
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
+// 👉 Import font Roboto
+const roboto = Roboto({
   subsets: ["latin"],
+  weight: ["300", "400", "500", "700"],
+  variable: "--font-roboto",
+  display: "swap",
 });
 
 export default async function RootLayout({
@@ -27,17 +29,17 @@ export default async function RootLayout({
   const menuData = await fetchMenus();
 
   return (
-    <html lang="vi">
+    <html lang="vi" className={roboto.variable}>
       <Head />
       <body
-        className={`base-load ${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`base-load font-sans antialiased`}
         suppressHydrationWarning
       >
         <AppProviders>
           <HeaderPage menuList={menuData} />
           <HeaderMobileSimple menuList={menuData} />
           <div className="container">{children}</div>
-          <FooterPage /> 
+          <FooterPage />
         </AppProviders>
       </body>
     </html>

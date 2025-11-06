@@ -91,32 +91,32 @@ const MotPhimVsGhienPhim = () => {
       </section>
 
       <section>
-        <h3 className="text-lg font-semibold">So sánh MotPhim với Rophimmoi.tv</h3>
+        <h3 className="text-lg font-semibold">So sánh MotPhim với Phimmoi789.com</h3>
         <p>
-          Cả <strong>MotPhim</strong> và <strong>Rophimmoi.tv</strong> đều là những
+          Cả <strong>MotPhim</strong> và <strong>Phimmoi789.com</strong> đều là những
           trang web xem phim trực tuyến miễn phí. Tuy nhiên,{" "}
-          <strong>Rophimmoi.tv</strong> tỏ ra ưu việt hơn nhờ vào những tính năng
+          <strong>Phimmoi789.com</strong> tỏ ra ưu việt hơn nhờ vào những tính năng
           tối ưu và chất lượng dịch vụ vượt trội.
         </p>
         <ul className="list-decimal pl-6 space-y-2">
           <li>
-            <strong>Kho phim:</strong> MotPhim tập trung vào phim hot; Rophimmoi đa
+            <strong>Kho phim:</strong> MotPhim tập trung vào phim hot; Phimmoi789 đa
             dạng hơn, nhiều thể loại và quốc gia hơn.
           </li>
           <li>
-            <strong>Chất lượng và tốc độ:</strong> cả hai đều HD, nhưng Rophimmoi
+            <strong>Chất lượng và tốc độ:</strong> cả hai đều HD, nhưng Phimmoi789
             tải nhanh, ổn định hơn và hỗ trợ tùy chỉnh độ phân giải.
           </li>
           <li>
-            <strong>Giao diện và tính năng:</strong> Rophimmoi có thanh tìm kiếm
+            <strong>Giao diện và tính năng:</strong> Phimmoi789 có thanh tìm kiếm
             thông minh, hỗ trợ phụ đề song ngữ và thuyết minh chuyên nghiệp.
           </li>
           <li>
-            <strong>Không quảng cáo:</strong> Rophimmoi không có quảng cáo, trải
+            <strong>Không quảng cáo:</strong> Phimmoi789 không có quảng cáo, trải
             nghiệm liền mạch hơn.
           </li>
           <li>
-            <strong>Cập nhật nhanh:</strong> Rophimmoi cập nhật cả phim chiếu rạp
+            <strong>Cập nhật nhanh:</strong> Phimmoi789 cập nhật cả phim chiếu rạp
             và bộ truyền hình, anime.
           </li>
         </ul>
@@ -138,7 +138,7 @@ const MotPhimVsGhienPhim = () => {
           Tổng kết – Nền tảng nào tốt hơn?
         </h3>
         <p>
-          <strong>Rophimmoi.tv</strong> là lựa chọn đáng cân nhắc hơn với:
+          <strong>Phimmoi789.com</strong> là lựa chọn đáng cân nhắc hơn với:
         </p>
         <ul className="list-disc pl-6">
           <li>Kho phim phong phú: phim rạp, bộ, anime, tài liệu</li>
@@ -151,7 +151,7 @@ const MotPhimVsGhienPhim = () => {
         </ul>
         <p>
           Nếu bạn đang tìm kiếm một nền tảng xem phim miễn phí chất lượng cao,
-          <strong> Rophimmoi.tv </strong> chắc chắn là trang web đáng trải nghiệm.
+          <strong> Phimmoi789.com </strong> chắc chắn là trang web đáng trải nghiệm.
         </p>
         <div className="w-1/2">
           <Image

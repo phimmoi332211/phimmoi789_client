@@ -578,7 +578,7 @@ background: #fff;
 
 header {
   display: none;
-  position: fixed;
+  /* position: fixed; */
   top: 0; left: 0; right: 0;
   z-index: 10;
   background: rgb(25, 27, 36) !important;

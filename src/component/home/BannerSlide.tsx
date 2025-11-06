@@ -10,7 +10,7 @@ import { useAuth } from "@/context/AuthContext";
 import Image from "next/image";
 import Link from "next/link";
 
-interface BannerSlideProps {
+export interface BannerSlideProps {
   slideData: Array<{
     _id: string;
     title: string;

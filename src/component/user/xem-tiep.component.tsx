@@ -28,7 +28,7 @@ export default function XemTiepComponent() {
     const timeout = setTimeout(() => {
       if (!authUser) {
         toast.warning("Bạn cần đăng nhập để truy cập trang này");
-        router.push("/home");
+        router.push("/phimhay");
       }
     }, 2000);
     return () => clearTimeout(timeout);
@@ -92,7 +92,7 @@ export default function XemTiepComponent() {
               </div>
               <Link className="v-thumbnail" href={`/xem-phim/${item.slug}`}>
                 <Image
-                  alt={`Xem Phim ${item.title} Vietsub HD Online - Rophimmoi`}
+                  alt={`Xem Phim ${item.title} Vietsub HD Online - Phimmoi789`}
                   loading="lazy"
                   src={item.thumb_url}
                   fill

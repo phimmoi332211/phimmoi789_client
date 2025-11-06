@@ -24,6 +24,9 @@ type NormalizedMovie = {
   title: string;
   name_english: string;
   poster_url: string;
+  image_alt: string;
+  image_caption: string;
+  image_title: string;
   episode_total: string; // ví dụ "26 Tập" hoặc "1 Tập"
   status_label: string; // "Hoàn Tất" | "Đang Chiếu" | ...
   quality?: string;
@@ -43,9 +46,12 @@ const toEpisodeLabel = (type?: string, total?: number) => {
 
 const normalizeMovie = (m: any): NormalizedMovie => ({
   slug: m?.url || "",
-  title: m?.name || "",
-  name_english: m?.origin_name || m?.name || "",
-  poster_url: m?.thumbnail || "",
+  title: m?.title || "",
+  name_english: m?.origin_name || m?.title || "",
+  poster_url: m?.image.url || "",
+  image_alt: m?.image.alt || "",
+  image_caption: m?.image.caption || "",
+  image_title: m?.image.title || "",
   episode_total: toEpisodeLabel(m?.type, m?.total_episode),
   status_label: toStatusLabel(m?.status),
   quality: m?.quality,
@@ -80,12 +86,12 @@ const MovieSlider: React.FC<MovieSliderProps> = ({ category }) => {
   return (
     <div className="row-topic">
       <div className="intro">
-        <div
+        <h1
           className="heading-md text-gradient mb-0"
           style={{ background: category.gradient }}
         >
           {category.title}
-        </div>
+        </h1>
         <div className="info">
           <Link className="line-center" href={category.slug}>
             <span>Xem toàn bộ</span>
@@ -267,14 +273,14 @@ const MovieSlider: React.FC<MovieSliderProps> = ({ category }) => {
 
                       <div className="h-item">
                         <div className="info">
-                          <h4 className="item-title lim-1">
+                          <h2 className="item-title lim-1">
                             <Link
                               title={movie.title}
                               href={`/phim/${movie.slug}`}
                             >
                               {movie.title}
                             </Link>
-                          </h4>
+                          </h2>
                           <h4 className="alias-title lim-1">
                             <Link
                               title={movie.name_english}

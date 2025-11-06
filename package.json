@@ -10,7 +10,7 @@
     "pages:build": "npx @cloudflare/next-on-pages --experimental-minify",
     "pages:logout": "npx wrangler logout",
     "pages:login": "npx wrangler login",
-    "deploy:rophimmoi": "npx wrangler pages deploy .vercel/output/static --project-name=rophimmoi --branch=main"
+    "deploy:phimmoi789": "npx wrangler pages deploy .vercel/output/static --project-name=phimmoi789 --branch=main"
   },
   "dependencies": {
     "@next/env": "^15.4.1",

@@ -48,7 +48,7 @@ const ComparisonPage = () => {
           ))}
 
           <h3 className="heading-sm text-primary">
-            So sánh Dongphim và Rophimmoi - Lựa chọn nào hoàn hảo hơn?
+            So sánh Dongphim và Phimmoi789 - Lựa chọn nào hoàn hảo hơn?
           </h3>
           <div>
             {[
@@ -76,7 +76,7 @@ const ComparisonPage = () => {
                 <tr>
                   <th>Tính năng</th>
                   <th className="bg-red-600">Dongphim</th>
-                  <th className="bg-yellow-400">Rophimmoi.tv</th>
+                  <th className="bg-yellow-400">Phimmoi789.tv</th>
                 </tr>
               </thead>
               <tbody>

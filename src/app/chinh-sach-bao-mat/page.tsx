@@ -102,15 +102,15 @@ const PrivacyPolicy = () => {
             lưu giữ. Để thực hiện các quyền này, vui lòng liên hệ với chúng tôi
             qua email:{" "}
             <Link
-              href="mailto:lienhe@rophimmoi.com"
+              href="mailto:lienhe@phimmoi789.com"
               className="text-blue-600 hover:underline"
             >
-              lienhe@rophimmoi.com
+              lienhe@phimmoi789.com
             </Link>
             .
           </li>
           <li>
-            Từ chối nhận thông báo từ Rophimmoi bất kỳ lúc nào thông qua tùy chọn
+            Từ chối nhận thông báo từ Phimmoi789 bất kỳ lúc nào thông qua tùy chọn
             trong email hoặc liên hệ trực tiếp.
           </li>
         </ul>
@@ -119,7 +119,7 @@ const PrivacyPolicy = () => {
           Cookies và Công Nghệ Tương Tự
         </h3>
         <p>
-        Rophimmoi sử dụng cookies và các công nghệ tương tự để thu thập thông tin
+        Phimmoi789 sử dụng cookies và các công nghệ tương tự để thu thập thông tin
           phi cá nhân về cách bạn sử dụng trang web. Cookies giúp chúng tôi:
         </p>
         <ul className="list-disc list-inside space-y-2">
@@ -141,7 +141,7 @@ const PrivacyPolicy = () => {
           Thay Đổi Chính Sách Riêng Tư
         </h3>
         <p>
-        Rophimmoi có thể cập nhật Chính Sách Riêng Tư này để phù hợp với các quy
+        Phimmoi789 có thể cập nhật Chính Sách Riêng Tư này để phù hợp với các quy
           định và chính sách nội bộ mới. Mọi thay đổi sẽ được thông báo trên
           trang web và có hiệu lực ngay khi được đăng tải. Việc tiếp tục sử dụng
           trang web sau khi có thay đổi đồng nghĩa với việc bạn chấp nhận các
@@ -153,10 +153,10 @@ const PrivacyPolicy = () => {
           Nếu có bất kỳ câu hỏi hoặc yêu cầu nào liên quan đến Chính Sách Riêng
           Tư này, vui lòng liên hệ với chúng tôi qua email:{" "}
           <Link
-            href="mailto:lienhe@rophimmoi.com"
+            href="mailto:lienhe@phimmoi789.com"
             className="text-blue-600 hover:underline"
           >
-            lienhe@rophimmoi.com
+            lienhe@phimmoi789.com
           </Link>
         </p>
       </div>

@@ -75,10 +75,10 @@ const AboutGhienPhim = () => {
         <p>
           Mọi thắc mắc xin liên hệ qua email:{" "}
           <Link
-            href="mailto:lienhe@rophimmoi.com"
+            href="mailto:lienhe@phimmoi789.com"
             className="underline text-blue-400 hover:text-blue-300"
           >
-            lienhe@rophimmoi.com
+            lienhe@phimmoi789.com
           </Link>{" "}
           hoặc qua trang{" "}
           <Link

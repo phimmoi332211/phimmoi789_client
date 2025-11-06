@@ -1,7 +1,5 @@
 import BannerSlide from "@/component/home/BannerSlide";
-import TopicGrid, { Topic } from "./Swapper";
 import MovieList from "./TopPhimTop";
-import { Community } from "./Community";
 import SlideFilm from "./SlideFilm";
 import Top10 from "./top10";
 import AnimeSlide from "./Anime";
@@ -28,60 +26,34 @@ const hotAndCoolColors = [
   "rgb(58, 27, 216)",
 ];
 
-// Hàm convert như cũ
-function convertToTopics(result: { name: string; url: string }[]): Topic[] {
-  return result.slice(0, 14).map((item, idx) => ({
-    id: item.url,
-    title: item.name,
-    href: `/list/${item.url}`,
-    backgroundColor: hotAndCoolColors[idx % hotAndCoolColors.length],
-  }));
-}
-
-interface FilmBannerResponse {
-  statusCode: number;
-  message: string;
-  data: {
-    meta: {
-      current: number;
-      pageSize: number;
-      pages: number;
-      total: number;
-    };
-    result: Film[];
-  };
-}
-
 export default async function HomePage() {
   // // Lấy phim banner
   const bannerRes: any = await fetchBannerList().catch((err) => {
     return { data: { result: [] } };
   });
-
   const slideData = bannerRes.data?.data || [];
 
-  // Lấy topics (bắt lỗi để không crash SSR)
-  const typeRes: any = await fetchCategories({ limit: 14 }).catch(() => ({
-    data: { data: [] },
-  }));
-  const topics = convertToTopics(typeRes.data?.data || []);
-  // // Lấy các thể loại phim (trung, hàn, âu mỹ)
-
-  const trungRes: any = await fetchMovies({
-    country: "trung-quoc",
+  const chinaRes: any = await fetchMovies({
+    page: 1,
+    limit: 10,
+    movieCountry: "trung-quoc"
   }).catch(() => ({ data: { data: { result: [] } } }));
 
-  const hanRes: any = await fetchMovies({
-    country: "han-quoc",
+  const koreaRes: any = await fetchMovies({
+    page: 1,
+    limit: 10,
+    movieCountry: "han-quoc"
   }).catch(() => ({ data: { data: { result: [] } } }));
 
-  const aumyRes: any = await fetchMovies({
-    country: "au-my",
+  const usaRes: any = await fetchMovies({
+    page: 1,
+    limit: 10,
+    movieCountry: "au-my"
   }).catch(() => ({ data: { data: { result: [] } } }));
-
-  const trungMovies = trungRes.data?.data?.result || [];
-  const hanMovies = hanRes.data?.data?.result || [];
-  const aumyMovies = aumyRes.data?.data?.result || [];
+  
+  const chinaMovies = chinaRes.data?.movies|| [];
+  const koreaMovies = koreaRes.data?.movies || [];
+  const usaMovies = usaRes.data?.movies || [];
 
   // Lấy phim điện ảnh mới  (slide phim)
   const slideMoviesRes: any = await fetchMovies({
@@ -89,25 +61,23 @@ export default async function HomePage() {
     limit: 30,
     movieCategory: "hoat-hinh"
   }).catch(() => ({ data: { data: { result: [] } } }));
-  const slideMovies = slideMoviesRes.data?.movies || [];
+  const slideMoviesData = slideMoviesRes.data?.movies || [];
 
   // Lấy top 10 phim bộ hôm nay (phim-bo)
-  const dataMovieSeries: any = await fetchMovies({
+  const movieSeriesRes: any = await fetchMovies({
     page: 1,
     limit: 10,
     movieType: "series",
-    sortBy: "newest",
   }).catch(() => ({ data: { data: { result: [] } } }));
-  const movieSeries = dataMovieSeries.data?.movies || [];
+  const movieSeriesData = movieSeriesRes.data?.movies || [];
 
   // Lấy top 10 phim bộ hôm nay (phim-le)
-  const dataMovieSingle: any = await fetchMovies({
+  const ovieSingleRes: any = await fetchMovies({
     page: 1,
     limit: 10,
     movieType: "single",
-    sortBy: "newest",
   }).catch(() => ({ data: { data: { result: [] } } }));
-  const movieSingle = dataMovieSingle.data?.movies || [];
+  const movieSingleData = ovieSingleRes.data?.movies || [];
 
   // Lấy anime (hoạt hình) từ API, truyền xuống AnimeSlide qua props
   const animeRes: any = await fetchMovies({
@@ -116,6 +86,28 @@ export default async function HomePage() {
     movieCategory: "hoat-hinh"
   }).catch(() => ({ data: { data: { result: [] } } }));
   const animeSlideData = animeRes.data?.movies || [];
+
+  // Lấy phim chiếu rạp từ API
+  const moviesInTheatersRes: any = await fetchMovies({
+    page: 1,
+    limit: 10,
+    movieCategory: "hoat-hinh"
+  }).catch(() => ({ data: { data: { result: [] } } }));
+  const moviesInTheatersSlideData = moviesInTheatersRes.data?.movies || [];
+  
+  const moviesHorrifiedRes: any = await fetchMovies({
+    page: 1,
+    limit: 10,
+    movieCategory: "kinh-di"
+  }).catch(() => ({ data: { data: { result: [] } } }));
+  const moviesHorrifiedData = moviesHorrifiedRes.data?.movies || [];
+  
+  const moviesCountryRes: any = await fetchMovies({
+    page: 1,
+    limit: 10,
+    movieCountry: "hong-kong"
+  }).catch(() => ({ data: { data: { result: [] } } }));
+  const moviesCountryData = moviesCountryRes.data?.movies || [];
 
   return (
     <>
@@ -128,20 +120,19 @@ export default async function HomePage() {
         </div>
       </div>
       <BannerSlide slideData={slideData} />
-      {/* <TopicGrid topics={topics} /> */}
       <MovieList
-        hanMovies={hanMovies}
-        trungMovies={trungMovies}
-        aumyMovies={aumyMovies}
+        hanMovies={koreaMovies}
+        trungMovies={chinaMovies}
+        aumyMovies={usaMovies}
       />
       {/* <Community /> */}
-      <SlideFilm movies={slideMovies} />
-      <Top10 movies={movieSingle} title={"Top 10 phim bộ hay nhất hôm nay/ tuần này/ tháng này"} />
-      <Top10 movies={movieSingle} title={"Top 10 phim lẻ hay nhất hôm nay/ tuần này/ tháng này"}/>
-      <Top10 movies={movieSingle} title={"Phim chiếu rạp đang HOT"}/>
+      <SlideFilm movies={slideMoviesData} />
+      <Top10 movies={movieSeriesData} title={"Top 10 phim bộ hay nhất hôm nay/ tuần này/ tháng này"} />
+      <Top10 movies={movieSingleData} title={"Top 10 phim lẻ hay nhất hôm nay/ tuần này/ tháng này"} />
+      <Top10 movies={moviesInTheatersSlideData} title={"Phim chiếu rạp đang HOT"} />
       <AnimeSlide animeSlideData={animeSlideData} />
-      <Top10 movies={movieSingle} title={"Bạn Nghĩ Mình Gan Sao? Xem Xong Phim Này Hãy Nói Tiếp"}/>
-      <Top10 movies={movieSingle} title={"Điện Ảnh Hồng Kông – Vị Cũ Không Bao Giờ Phai"}/>
+      <Top10 movies={moviesHorrifiedData} title={"Bạn Nghĩ Mình Gan Sao? Xem Xong Phim Này Hãy Nói Tiếp"} />
+      <Top10 movies={moviesCountryData} title={"Điện Ảnh Hồng Kông – Vị Cũ Không Bao Giờ Phai"} />
     </>
   );
 }

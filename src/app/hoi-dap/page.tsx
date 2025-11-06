@@ -132,7 +132,7 @@ const FaqList = () => {
   return (
     <div className="max-w-4xl mx-auto py-8 px-4 mt-30">
       <h2 className="text-3xl font-bold mb-6 text-center text-primary">
-        Một số câu hỏi được người dùng quan tâm nhất tại Rophimmoi – Phim hay cả rổ
+        Một số câu hỏi được người dùng quan tâm nhất tại Phimmoi789 – Phim hay cả rổ
       </h2>
       <ul className="list-decimal list-inside mb-10 space-y-2 text-white border border-r-8 border-white p-4 rounded-lg">
         {faqData.map((faq, index) => (

@@ -128,7 +128,7 @@ export default function HeaderPage({ menuList }: HeaderPageProps) {
     <>
       <header className="fly menuDesktop">
         <div className="header-elements">
-          <Link id="logo" title="Rophimmoi" href="/home">
+          <Link id="logo" title="Phimmoi789" href="/phimhay">
             <Image src="/logo.webp" alt="logo" width={134} height={40} />
           </Link>
 

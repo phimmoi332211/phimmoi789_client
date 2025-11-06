@@ -4,15 +4,15 @@ const TermsOfUse = () => {
   return (
     <section className="max-w-4xl mx-auto px-4 py-8 text-white mt-30">
       <h2 className="text-3xl font-bold text-primary mb-6">
-        Điều Khoản Sử Dụng - Rophimmoi
+        Điều Khoản Sử Dụng - Phimmoi789
       </h2>
 
       <div className="space-y-6 leading-relaxed">
         <p>
-          Chào mừng bạn đến với Rophimmoi – Phim hay cả rổ, nền tảng xem phim trực
+          Chào mừng bạn đến với Phimmoi789 – Phim hay cả rổ, nền tảng xem phim trực
           tuyến miễn phí hàng đầu. Để đảm bảo trải nghiệm tốt nhất cho tất cả
-          người dùng, Rophimmoi xây dựng và duy trì các điều khoản sử dụng dưới
-          đây. Bằng việc truy cập và sử dụng dịch vụ của Rophimmoi, bạn đồng ý tuân
+          người dùng, Phimmoi789 xây dựng và duy trì các điều khoản sử dụng dưới
+          đây. Bằng việc truy cập và sử dụng dịch vụ của Phimmoi789, bạn đồng ý tuân
           thủ các điều khoản này. Vui lòng đọc kỹ để hiểu rõ quyền và nghĩa vụ
           của bạn.
         </p>
@@ -21,9 +21,9 @@ const TermsOfUse = () => {
           1. Chấp Nhận Điều Khoản Sử Dụng
         </h3>
         <p>
-          Khi sử dụng dịch vụ của Rophimmoi, bạn chấp nhận rằng bạn đã đọc, hiểu và
+          Khi sử dụng dịch vụ của Phimmoi789, bạn chấp nhận rằng bạn đã đọc, hiểu và
           đồng ý với các điều khoản sử dụng này. Nếu bạn không đồng ý với bất kỳ
-          điều khoản nào, vui lòng không tiếp tục truy cập hoặc sử dụng Rophimmoi.
+          điều khoản nào, vui lòng không tiếp tục truy cập hoặc sử dụng Phimmoi789.
         </p>
 
         <h3 className="text-xl font-semibold text-primary">
@@ -123,10 +123,10 @@ const TermsOfUse = () => {
           Nếu bạn có bất kỳ câu hỏi hoặc thắc mắc nào, vui lòng liên hệ qua
           email:{" "}
           <Link
-            href="mailto:lienhe@rophimmoi.com"
+            href="mailto:lienhe@Phimmoi789.com"
             className="underline text-blue-400 hover:text-blue-300"
           >
-            lienhe@rophimmoi.com
+            lienhe@Phimmoi789.com
           </Link>
         </p>
       </div>

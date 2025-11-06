@@ -30,10 +30,10 @@ const ArticleComparison = () => {
           dịch vụ xem phim miễn phí, Subnhanh là một trong những nền tảng được
           đông đảo khán giả yêu thích nhờ kho phim phong phú, chất lượng hình
           ảnh sắc nét và giao diện thân thiện. Tuy nhiên, khi so sánh với{" "}
-          <b>Rophimmoi.tv</b>, một nền tảng cũng cung cấp dịch vụ tương tự, liệu
+          <b>Phimmoi789.com</b>, một nền tảng cũng cung cấp dịch vụ tương tự, liệu
           đâu mới là lựa chọn tối ưu hơn? Hãy cùng tìm hiểu chi tiết về{" "}
           <b>Subnhanh</b> và những điểm khác biệt so với
-          <b> Rophimmoi.tv</b>.
+          <b> Phimmoi789.com</b>.
         </p>
       </section>
 
@@ -68,27 +68,27 @@ const ArticleComparison = () => {
 
       <section>
         <h3 className="text-lg font-semibold">
-          So Sánh Subnhanh Và Rophimmoi.tv – Đâu Là Lựa Chọn Tốt Hơn?
+          So Sánh Subnhanh Và Phimmoi789.com – Đâu Là Lựa Chọn Tốt Hơn?
         </h3>
         <ul className="list-disc list-inside space-y-2">
           <li>
-            <strong>Kho nội dung:</strong> Rophimmoi.tv cập nhật nhanh hơn và có đa
+            <strong>Kho nội dung:</strong> Phimmoi789.com cập nhật nhanh hơn và có đa
             dạng nội dung hơn so với Subnhanh.
           </li>
           <li>
-            <strong>Chất lượng và tốc độ tải:</strong> Rophimmoi.tv tải nhanh,
+            <strong>Chất lượng và tốc độ tải:</strong> Phimmoi789.com tải nhanh,
             không giật lag, tùy chỉnh độ phân giải linh hoạt.
           </li>
           <li>
-            <strong>Giao diện người dùng:</strong> Rophimmoi.tv thân thiện, có bộ
+            <strong>Giao diện người dùng:</strong> Phimmoi789.com thân thiện, có bộ
             lọc thông minh, hỗ trợ đa ngôn ngữ.
           </li>
           <li>
             <strong>Không quảng cáo:</strong> Subnhanh có nhiều quảng cáo trong
-            khi Rophimmoi.tv thì không.
+            khi Phimmoi789.com thì không.
           </li>
           <li>
-            <strong>Cập nhật phim mới:</strong> Rophimmoi.tv cập nhật 24/24, nhanh
+            <strong>Cập nhật phim mới:</strong> Phimmoi789.com cập nhật 24/24, nhanh
             hơn.
           </li>
         </ul>
@@ -103,7 +103,7 @@ const ArticleComparison = () => {
             <tr>
               <th className="border border-white px-4 py-2">Tính năng</th>
               <th className="border border-white px-4 py-2">Subnhanh</th>
-              <th className="border border-white px-4 py-2">Rophimmoi.tv</th>
+              <th className="border border-white px-4 py-2">Phimmoi789.com</th>
             </tr>
           </thead>
           <tbody>
@@ -163,10 +163,10 @@ const ArticleComparison = () => {
       <section>
         <h3 className="text-lg font-semibold">Kết Luận</h3>
         <p>
-          Cả <b>Subnhanh</b> và <b>Rophimmoi.tv</b> đều là nền tảng xem phim trực
+          Cả <b>Subnhanh</b> và <b>Phimmoi789.com</b> đều là nền tảng xem phim trực
           tuyến miễn phí, nhưng nếu bạn cần một trải nghiệm tối ưu hơn với tốc
           độ, chất lượng hình ảnh và không bị gián đoạn bởi quảng cáo thì{" "}
-          <b>Rophimmoi.tv</b> là lựa chọn phù hợp hơn.
+          <b>Phimmoi789.com</b> là lựa chọn phù hợp hơn.
         </p>
       </section>
     </div>

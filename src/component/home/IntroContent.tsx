@@ -8,7 +8,7 @@ export default function IntroContent() {
   const router = useRouter();
 
   const handleContinue = () => {
-    router.push("/home");
+    router.push("/phimhay");
   };
 
   const nameSite = "Phimmoi789";
@@ -545,7 +545,7 @@ export default function IntroContent() {
         </div>
 
         <div id="home-footer">
-          © 2024 <Link href="/home">Rophimmoi</Link>
+          © 2024 <Link href="/phimhay">Phimmoi789</Link>
         </div>
       </div>
     </div>

@@ -22,10 +22,10 @@ const ContactPage = () => {
         <p>
           Email hỗ trợ khách hàng:{" "}
           <Link
-            href="mailto:lienhe@rophimmoi.com"
+            href="mailto:lienhe@phimmoi789.com"
             className="underline text-blue-400 hover:text-blue-300"
           >
-            lienhe@rophimmoi.com
+            lienhe@phimmoi789.com
           </Link>
         </p>
         <ul className="list-disc list-inside ml-4 space-y-1">
@@ -45,10 +45,10 @@ const ContactPage = () => {
         <p>
           Email liên hệ về Chính Sách Riêng Tư:{" "}
           <Link
-            href="mailto:lienhe@rophimmoi.com"
+            href="mailto:lienhe@phimmoi789.com"
             className="underline text-blue-400 hover:text-blue-300"
           >
-            lienhe@rophimmoi.com
+            lienhe@phimmoi789.com
           </Link>
         </p>
         <p>

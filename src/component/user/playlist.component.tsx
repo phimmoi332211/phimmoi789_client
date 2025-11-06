@@ -36,7 +36,7 @@ export default function PlaylistComponent() {
     const timeout = setTimeout(() => {
       if (!authUser) {
         toast.warning("Bạn cần đăng nhập để truy cập trang này");
-        router.push("/home");
+        router.push("/phimhay");
       }
     }, 2000);
     return () => clearTimeout(timeout);

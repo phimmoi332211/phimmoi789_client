@@ -31,7 +31,8 @@ export const fetchMovies = async ({
   sortBy,
   movieType,
   movieStatus,
-  movieCategory
+  movieCategory,
+  movieCountry,
 }: {
   page?: number;
   limit?: number;
@@ -47,6 +48,7 @@ export const fetchMovies = async ({
   movieType?: string;
   movieStatus?: string;
   movieCategory?: string;
+  movieCountry?: string;
 }) => {
   const query = {
     limit,
@@ -73,6 +75,7 @@ export const fetchMovies = async ({
     ...(movieStatus && { movieStatus }),
     ...(movieStatus && { movieStatus }),
     ...(movieCategory && { movieCategory }),
+    ...(movieCountry && { movieCountry }),
   };
   return customFetch(CLIENT_ENDPOINTS.PUBLICS.MOVIES.LIST, "GET", query);
 };

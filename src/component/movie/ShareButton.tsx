@@ -15,7 +15,7 @@ export default function ShareButton({ slug, title, variant = 'default' }: ShareB
 
   const handleShare = async (type: string) => {
     const url = `${window.location.origin}/phim/${slug}`;
-    const shareText = `Xem phim ${title} tại Rophimmoi`;
+    const shareText = `Xem phim ${title} tại Phimmoi789`;
 
     switch(type) {
       case 'copy':

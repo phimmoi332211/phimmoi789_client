@@ -13,7 +13,7 @@ export default function UserMenuComponent() {
   const handleLogout = (e: React.MouseEvent) => {
     e.preventDefault();
     logout();
-    router.push("/home");
+    router.push("/phimhay");
   };
 
   return (

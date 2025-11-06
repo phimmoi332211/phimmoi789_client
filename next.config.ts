@@ -30,14 +30,6 @@ const nextConfig: NextConfig = {
       },
     ],
   },
-  async rewrites() {
-    return [
-      {
-        source: "/films/:path*",
-        destination: "https://film.rophimmoi.com/api/v1/films/:path*",
-      },
-    ];
-  },
   reactStrictMode: false,
 };
 

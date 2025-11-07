@@ -3,29 +3,14 @@
 import React from "react";
 import Image from "next/image";
 import Link from "next/link";
-
-interface Episode {
-  title: string;
-  episode: string;
-  link_embed: string;
-  link_m3u8: string;
-}
-
-interface MovieData {
-  slug: string;
-  title: string;
-  thumb_url: string;
-  poster_url: string;
-  episode?: Episode[];
-  lang?: string;
-}
+import { MovieData } from "@/types/detail";
 
 interface TabEpisodesSingleProps {
   movieData: MovieData;
 }
 
 export default function TabEpisodesSingle({ movieData }: TabEpisodesSingleProps) {
-  const episode = movieData.episode?.[0];
+  const episode = movieData.episodes?.[0];
 
   if (!episode) {
     return (

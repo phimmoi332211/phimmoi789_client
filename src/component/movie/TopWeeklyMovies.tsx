@@ -9,7 +9,6 @@ interface TopWeeklyMoviesProps {
   movies: SimilarMovies[];
 }
 
-
 const TopWeeklyMovies: React.FC<TopWeeklyMoviesProps> = ({ movies }) => {
   return (
     <div className="child-box child-top">
@@ -31,7 +30,7 @@ const TopWeeklyMovies: React.FC<TopWeeklyMoviesProps> = ({ movies }) => {
               <div className="h-item">
                 <div className="v-thumb-m">
                   <Link className="v-thumbnail" href={`/phim/${movie.slug}`}>
-                    <Image alt={movie.title} src={movie.featuredImage.url} width={150} height={225} />
+                    <Image alt={movie.title} src={movie?.featuredImage?.url || "/default-avatar.jpg"} width={150} height={225} />
                   </Link>
                 </div>
                 <div className="info">

@@ -5,7 +5,6 @@ import { Autoplay, Navigation } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/navigation";
 import { MovieHoverTooltip, PortalTooltip } from "./MovieHoverTooltip";
-import { Define } from "@/types/define";
 import Link from "next/link";
 import Image from "next/image";
 import { toAbsoluteImageUrl } from "@/help/helper";
@@ -45,7 +44,8 @@ const toEpisodeLabel = (type?: string, total?: number) => {
 };
 
 const normalizeMovie = (m: any): NormalizedMovie => ({
-  slug: m?.url || "",
+
+  slug: m?.slug || "",
   title: m?.title || "",
   name_english: m?.origin_name || m?.title || "",
   poster_url: m?.image.url || "",
@@ -62,6 +62,7 @@ interface MovieSliderProps {
 }
 
 const MovieSlider: React.FC<MovieSliderProps> = ({ category }) => {
+
   const prevRef = useRef<HTMLButtonElement>(null);
   const nextRef = useRef<HTMLButtonElement>(null);
   const cardRefs = useRef<(HTMLDivElement | null)[]>([]);
@@ -260,13 +261,6 @@ const MovieSlider: React.FC<MovieSliderProps> = ({ category }) => {
                             height={360}
                             className="w-full h-auto"
                             unoptimized
-                            // onError={(e: any) => {
-                            //   if (
-                            //     e?.currentTarget?.src !== "/default-avatar.jpg"
-                            //   ) {
-                            //     e.currentTarget.src = "/default-avatar.jpg";
-                            //   }
-                            // }}
                           />
                         </div>
                       </Link>

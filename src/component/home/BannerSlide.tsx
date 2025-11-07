@@ -67,9 +67,6 @@ export default function BannerSlide({ slideData }: BannerSlideProps) {
       .replace(/-+/g, "-")
       .replace(/^-+|-+$/g, "");
 
-  console.log("slideData", slideData);
-
-
   return (
     <div id="top_slide">
       <div className="slide-wrapper top-slide-wrap">
@@ -90,7 +87,6 @@ export default function BannerSlide({ slideData }: BannerSlideProps) {
                 <div className="slide-elements">
                   <Link className="slide-url" href={href}>
                   </Link>
-
                   <div
                     className="absolute inset-0 bg-cover bg-center bg-no-repeat"
                     style={{ backgroundImage: `url("${poster}")` }}

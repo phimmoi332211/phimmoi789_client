@@ -8,7 +8,7 @@ export default function IntroContent() {
   const router = useRouter();
 
   const handleContinue = () => {
-    router.push("/phimhay");
+    router.push("/phim-hay");
   };
 
   const nameSite = "Phimmoi789";
@@ -19,7 +19,7 @@ export default function IntroContent() {
         <div className="home-section w-2/3 mx-auto" id="section-first">
           <div className="container">
             <div className="home-board">
-              <Link className="home-logo" href="/phimhay">
+              <Link className="home-logo" href="/phim-hay">
                 <Image src="/logo.webp" alt="logo" width={360} height={107} />
               </Link>
               <h2 className="heading-xl">
@@ -545,7 +545,7 @@ export default function IntroContent() {
         </div>
 
         <div id="home-footer">
-          © 2024 <Link href="/phimhay">Phimmoi789</Link>
+          © 2024 <Link href="/phim-hay">Phimmoi789</Link>
         </div>
       </div>
     </div>

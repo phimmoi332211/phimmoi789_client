@@ -1,8 +1,6 @@
 "use client";
 
 import React, { useState } from "react";
-import { ratingEvent } from "@/events/modal";
-import { useAuth } from "@/context/AuthContext";
 import Image from "next/image";
 import { toast } from "react-toastify";
 import { postRating } from "@/help/helper";
@@ -153,16 +151,6 @@ export default function RatingModal({
                   <span>Dở tệ</span>
                 </div>
               </div>
-              {/* <div className="rate-comment">
-                <textarea
-                  className="form-control v-form-control"
-                  rows={3}
-                  cols={3}
-                  placeholder="Viết nhận xét về phim (tuỳ chọn)"
-                  value={comment}
-                  onChange={(e) => setComment(e.target.value)}
-                />
-              </div> */}
             </div>
             <div className="is-footer gap-3">
               <button

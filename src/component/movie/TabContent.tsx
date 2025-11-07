@@ -20,7 +20,6 @@ export default function TabContent({ movieData }: TabContentProps) {
     e.preventDefault();
     setActiveTab(tab);
   };
-
   const isSingleEpisode = movieData?.episode_total === "1";
 
   return (

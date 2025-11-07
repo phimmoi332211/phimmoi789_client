@@ -52,7 +52,7 @@ export default function HeaderMobileSimple({ menuList }: HeaderMobileSimpleProps
   const handleLogout = () => {
     logout();
     toast.success("Đã đăng xuất!");
-    router.push("/phimhay");
+    router.push("/phim-hay");
   };
 
   const handleSearch = () => {
@@ -67,7 +67,7 @@ export default function HeaderMobileSimple({ menuList }: HeaderMobileSimpleProps
       <header className="header-mobile bg-dark text-white">
         <div className="header-elements flex items-center justify-between p-3">
           {/* Logo */}
-          <Link href="/phimhay" title="Phimmoi789" className="logo">
+          <Link href="/phim-hay" title="Phimmoi789" className="logo">
             <Image src="/logo.webp" alt="logo" width={120} height={35} />
           </Link>
 

@@ -3,18 +3,16 @@
 import React from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
-import { TopMovie } from '@/types/detail';
+import { SimilarMovies } from '@/types/detail';
 
 interface SuggestedMoviesProps {
-  movies: TopMovie[];
+  movies: SimilarMovies[];
 }
-
 
 export default function SuggestedMovies({ movies }: SuggestedMoviesProps) {
   if (!movies || movies.length === 0) {
     return null;
   }
-
   
   return (
     <div className="ws-top">
@@ -24,14 +22,14 @@ export default function SuggestedMovies({ movies }: SuggestedMoviesProps) {
         </div>
         <div className="child-content">
           <div className="cc-top">
-            {movies.map((movie) => (
-              <div key={movie.id} className="item">
+            {movies && movies.length > 0 && movies.map((movie, index) => (
+              <div key={index} className="item">
                 <div className="h-item">
                   <div className="v-thumb-m">
-                    <Link className="v-thumbnail" href={`/phim/${movie.id}`}>
+                    <Link className="v-thumbnail" href={`/phim/${movie.slug}`}>
                       <Image 
-                        alt={movie.title}
-                        src={movie.image}
+                        alt={movie.featuredImage.alt}
+                        src={movie.featuredImage.url ||"/default-avatar.jpg"}
                         width={300}
                         height={450}
                         loading="lazy"
@@ -40,14 +38,13 @@ export default function SuggestedMovies({ movies }: SuggestedMoviesProps) {
                   </div>
                   <div className="info">
                     <h4 className="item-title lim-2">
-                      <Link title={movie.title} href={`/phim/${movie.id}`}>
+                      <Link title={movie.title} href={`/phim/${movie.slug}`}>
                         {movie.title}
                       </Link>
                     </h4>
-                    <div className="alias-title mb-2 lim-1">{movie.alias}</div>
+                    <div className="alias-title mb-2 lim-1">{movie.movieData.origin_name}</div>
                     <div className="info-line">
-                      <div className="tag-small">{movie.hasSubtitle ? 'Vietsub' : 'Thuyết minh'}</div>
-                      {movie.episodes > 0 && <div className="tag-small">{movie.episodes} tập</div>}
+                      <div className="tag-small">{movie.movieData.hashtag ? 'Vietsub' : 'Thuyết minh'}</div>
                     </div>
                   </div>
                 </div>

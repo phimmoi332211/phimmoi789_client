@@ -14,6 +14,7 @@ import CommentForm from "./CommentSection/CommentForm";
 import TabSwitcher from "./CommentSection/TabSwitcher";
 import { toast } from "react-toastify";
 import { postComments, postRating } from "@/help/helper";
+import { MovieData } from "@/types/detail";
 
 // Cấu hình dayjs
 dayjs.extend(relativeTime);
@@ -94,14 +95,12 @@ interface ServiceResponse {
 }
 
 interface CommentSectionProps {
-  movieData?: any;
+  movieData?: MovieData;
 }
 
 export default function CommentSection({ movieData }: CommentSectionProps) {
-  const router = useRouter();
   const [allComments, setAllComments] = useState<Comment[]>([]);
   const [allReviews, setAllReviews] = useState<Review[]>([]);
-  const [loading, setLoading] = useState(true);
   const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [newComment, setNewComment] = useState("");
@@ -224,16 +223,6 @@ export default function CommentSection({ movieData }: CommentSectionProps) {
     } finally {
       setSubmitting(false);
     }
-  }
-
-  const handleReplySubmit = () => {
-
-  }
-  const handleVote = () => {
-
-  }
-  const handleLoadMore = () => {
-
   }
 
   // Lắng nghe event từ RatingModal

@@ -51,9 +51,9 @@ export default function DetailSide({
     <div className="hl-tags">
       {movieData.category.map((cat) => (
         <Link
-          key={cat.slug}
+          key={cat?.slug || "#"}
           className="tag-topic"
-          href={`/the-loai/${cat.slug}`}
+          href={`/the-loai/${cat?.slug || ""}`}
         >
           {cat.name}
         </Link>
@@ -78,12 +78,12 @@ export default function DetailSide({
   );
 
   const renderActors = () =>
-    movieData.actor.map((actor, index) => (
+    movieData.actors?.map((actor, index) => (
       <span key={index}>
-        <Link href={`/dien-vien/${actor.toLowerCase().replace(/\s+/g, "-")}`}>
-          {actor}
+        <Link href={`/dien-vien/${actor.name.toLowerCase().replace(/\s+/g, "-")}`}>
+          {actor.name}
         </Link>
-        {index < movieData.actor.length - 1 && ", "}
+        {index < movieData.actors.length - 1 && ", "}
       </span>
     ));
 

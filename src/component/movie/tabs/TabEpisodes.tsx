@@ -1,34 +1,23 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import ToggleSwitch from "../ToggleSwitch";
-
-interface Episode {
-  title: string;
-  episode: string;
-  link_embed: string;
-  link_m3u8: string;
-}
-
-interface MovieData {
-  slug: string;
-  title: string;
-  thumb_url: string;
-  poster_url: string;
-  episode?: Episode[];
-  currentEpisode?: string;
-}
+import { MovieData } from "@/types/detail";
+import { useParams, useSearchParams } from "next/navigation";
 
 interface TabEpisodesProps {
   movieData: MovieData;
 }
 
 export default function TabEpisodes({ movieData }: TabEpisodesProps) {
+  const params = useParams();
+  const searchParams = useSearchParams();
   const [isCollapsed, setIsCollapsed] = useState(true);
+  const [currentEpNumber, setCurrentEpNumber] = useState("1");
 
-  if (!movieData?.episode || !Array.isArray(movieData.episode)) {
+  if (!movieData?.episodes || !Array.isArray(movieData.episodes)) {
     return (
       <div className="cg-body-box is-eps">
         <div className="box-body">
@@ -42,6 +31,12 @@ export default function TabEpisodes({ movieData }: TabEpisodesProps) {
       </div>
     );
   }
+
+  useEffect(() => {
+    console.log("params.slug", params);
+    
+    setCurrentEpNumber(searchParams.get("tap") ?? "1");
+  }, [searchParams]);
 
   return (
     <div className="cg-body-box is-eps">
@@ -59,11 +54,11 @@ export default function TabEpisodes({ movieData }: TabEpisodesProps) {
       <div className="box-body">
         {isCollapsed ? (
           <div className="de-eps is-grid is-simple">
-            {movieData.episode.map((episode) => (
+            {movieData.episodes.map((episode, index) => (
               <Link
-                key={episode.episode}
-                className={`item ${episode.episode === movieData.currentEpisode ? 'on-air' : ''}`}
-                href={`/xem-phim/${movieData.slug}?ep=${episode.episode}`}
+                key={index}
+                className={`item ${episode.episode === Number(currentEpNumber) ? 'on-air' : ''}`}
+                href={`/xem-phim/${movieData.slug}?tap=${episode.episode}`}
               >
                 <div className="v-thumbnail h-thumbnail">
                   <div className="play-button">
@@ -89,11 +84,11 @@ export default function TabEpisodes({ movieData }: TabEpisodesProps) {
           </div>
         ) : (
           <div className="de-eps is-grid">
-            {movieData.episode.map((episode) => (
+            {movieData.episodes.map((episode, index) => (
               <Link
-                key={episode.episode}
+                key={index}
                 className={`item ${episode.episode === movieData.currentEpisode ? 'on-air' : ''}`}
-                href={`/xem-phim/${movieData.slug}?ep=${episode.episode}`}
+                href={`/xem-phim/${movieData.slug}?tap=${episode.episode}`}
               >
                 <div className="v-thumbnail h-thumbnail">
                   <div className="play-button">

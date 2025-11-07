@@ -2,9 +2,8 @@
 
 import React, { useState } from "react";
 import Link from "next/link";
-import { MovieData } from "@/types/detail";
+import { Episode, MovieData } from "@/types/detail";
 import RatingButton from "./RatingButton";
-import { toast } from "react-toastify";
 import PlaylistDropdown from "./PlaylistDropdown";
 import FavoriteButton from "./FavoriteButton";
 import ShareButton from "./ShareButton";
@@ -20,17 +19,17 @@ interface Playlist {
 }
 
 export default function ActionBar({ movieData, onRatingClick }: ActionBarProps) {
-  const { rating = 10, title, slug } = movieData || {};
+  const { rating = 10, title, slug, episodes } = movieData || {};
   const [showShareDropdown, setShowShareDropdown] = useState(false);
 
   const handleAction = async (action: string) => {
     // Xử lý các hành động khi đã đăng nhập
-    switch(action) {
+    switch (action) {
       case 'comment':
         // Scroll xuống CommentSection
         const commentSection = document.getElementById('comment-area');
         if (commentSection) {
-          commentSection.scrollIntoView({ 
+          commentSection.scrollIntoView({
             behavior: 'smooth',
             block: 'start'
           });
@@ -41,6 +40,13 @@ export default function ActionBar({ movieData, onRatingClick }: ActionBarProps) 
         break;
     }
   };
+
+  const defaultEpisode = (episodes: Episode[]) => {
+    if (episodes.length > 0) {
+      return `?tap=${episodes[0].episode}`
+    }
+    return '';
+  }
 
   // Đóng dropdown khi click ra ngoài
   React.useEffect(() => {
@@ -58,13 +64,16 @@ export default function ActionBar({ movieData, onRatingClick }: ActionBarProps) 
   return (
     <div className="dm-bar">
       <div className="elements">
-        <Link 
-          className="btn btn-xl btn-rounded button-play flex-shrink-0" 
-          href={`/xem-phim/${slug}`}
-        >
-          <i className="fa-solid fa-play"></i>
-          <span>Xem Ngay</span>
-        </Link>
+        {episodes && episodes.length > 0 && (
+          <Link
+            className="btn btn-xl btn-rounded button-play flex-shrink-0"
+            href={`/xem-phim/${slug}${defaultEpisode(episodes)}`}
+          >
+            <i className="fa-solid fa-play"></i>
+            <span>Xem Ngay</span>
+          </Link>
+        )}
+
         <div className="touch-group flex-grow-1">
           <div className="is-left flex-grow-1">
             <FavoriteButton slug={slug} />

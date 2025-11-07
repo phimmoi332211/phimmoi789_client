@@ -57,9 +57,9 @@ const TabSuggestion: React.FC<TabSuggestionProps> = ({ movieData }) => {
                 </div>
                 <div>
                   <Image
-                    alt={movie.featuredImage.alt}
+                    alt={movie?.featuredImage?.alt || "default-avatar"}
                     loading="lazy"
-                    src={movie.featuredImage.url}
+                    src={movie?.featuredImage?.url || "/default-avatar.jpg"}
                     width={180}
                     height={260}
                   />

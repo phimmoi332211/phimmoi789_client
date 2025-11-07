@@ -3,7 +3,7 @@ import MovieList from "./TopPhimTop";
 import SlideFilm from "./SlideFilm";
 import Top10 from "./top10";
 import AnimeSlide from "./Anime";
-import { fetchBannerList, fetchCategories, fetchMovies } from "@/help/helper";
+import { fetchBannerList, fetchMovies } from "@/help/helper";
 import { Define } from "@/types/define";
 import Film = Define.Film;
 import Image from "next/image";

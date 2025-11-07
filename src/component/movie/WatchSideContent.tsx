@@ -6,7 +6,7 @@ import ActorList from './ActorList';
 import SuggestedMovies from './SuggestedMovies';
 import { useAuth } from "@/context/AuthContext";
 import { modalEvent } from '@/events/modal';
-import type { TopMovie } from '@/types/detail';
+import type { MovieData, SimilarMovies } from '@/types/detail';
 
 interface Actor {
   name: string;
@@ -16,7 +16,7 @@ interface Actor {
 
 interface WatchSideContentProps {
   actors: Actor[];
-  suggestedMovies: TopMovie[];
+  suggestedMovies: SimilarMovies[];
   title: string;
   rating: number;
   onRatingClick: () => void;

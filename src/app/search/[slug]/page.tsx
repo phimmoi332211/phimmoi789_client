@@ -33,7 +33,6 @@ const PAGE_SIZE = 40;
 
 export default function SearchPage() {
   const { slug } = useParams() as { slug: string };
-  console.log("slug: ", slug);
   const formattedSlug = decodeURIComponent(slug).replace(/\+/g, " ");
 
   const [filters, setFilters] = useState<FilterState>(defaultFilters);
@@ -66,13 +65,6 @@ export default function SearchPage() {
         fetchCategories({ limit: 50 }),
         fetchContries({ limit: 50 }),
       ])) as [any, any];
-      console.log(
-        (categories.data?.data || []).map((cat: any) => ({
-          _id: cat._id,
-          name: cat.name,
-          url: cat.url,
-        }))
-      );
       setCategoryList(
         (categories.data?.data || []).map((cat: any) => ({
           _id: cat._id,
@@ -144,7 +136,6 @@ export default function SearchPage() {
         setMovies([]);
       }
     } catch (err) {
-      console.log("err: ", err);
       toast("Có lỗi khi tìm kiếm phim!", { type: "error" });
     } finally {
       setIsLoading(false);

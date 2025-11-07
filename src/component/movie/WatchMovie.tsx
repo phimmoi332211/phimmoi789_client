@@ -21,8 +21,6 @@ interface WatchMovieProps {
 }
 
 export default function WatchMovie({ initialMovieData }: WatchMovieProps) {
-  console.log("initialMovieData", initialMovieData);
-  
   const params = useParams();
   const searchParams = useSearchParams();
   const { authUser } = useAuth();
@@ -31,16 +29,12 @@ export default function WatchMovie({ initialMovieData }: WatchMovieProps) {
   const [showRatingModal, setShowRatingModal] = useState(false);
   const [showPlaylistModal, setShowPlaylistModal] = useState(false);
   const [movieData] = useState<MovieData | undefined>(initialMovieData);
-  const [suggestedMovies, setSuggestedMovies] = useState<TopMovie[]>([]);
-
-  // Progress state
-  const [watchProgress, setWatchProgress] = useState(0);
 
   // Current episode number from query param
-  const [currentEpNumber, setCurrentEpNumber] = useState("1");
+  const [currentEpNumber, setCurrentEpNumber] = useState(1);
 
   useEffect(() => {
-    setCurrentEpNumber(searchParams.get("ep") ?? "1");
+    setCurrentEpNumber(Number(searchParams.get("tap")) ?? 1);
   }, [searchParams]);
 
   // Playlist modal listener
@@ -53,34 +47,6 @@ export default function WatchMovie({ initialMovieData }: WatchMovieProps) {
     return () => {
       modalEvent.off("showPlaylist", handleShowPlaylist);
     };
-  }, []);
-
-  // Load suggested movies
-  useEffect(() => {
-    const loadSuggestedMovies = async () => {
-      try {
-        // const response = await fetchSuggestedMovies();
-        // if (response?.data?.result) {
-        //   const transformedMovies: TopMovie[] = response.data.result.map(
-        //     (movie) => ({
-        //       id: movie.slug,
-        //       title: movie.title,
-        //       alias: movie.name_english,
-        //       image: movie.poster_url,
-        //       episodes: movie.episode_total ? parseInt(movie.episode_total) : 0,
-        //       hasSubtitle: movie.lang === "Vietsub",
-        //       hasDubbing: movie.lang === "Thuyết minh",
-        //       lang: movie.lang,
-        //     })
-        //   );
-        //   setSuggestedMovies(transformedMovies);
-        // }
-      } catch (error) {
-        setSuggestedMovies([]);
-      }
-    };
-
-    loadSuggestedMovies();
   }, []);
 
   // Update view count
@@ -107,12 +73,13 @@ export default function WatchMovie({ initialMovieData }: WatchMovieProps) {
     poster_url,
     rating,
     actors,
-    episode,
+    episodes,
+    similarMovies,
   } = movieData;
 
   const currentEpisode =
-    episode?.find((ep) => ep.episode === currentEpNumber) ||
-    episode?.[0] ||
+    episodes?.find((ep) => ep.episode === Number(currentEpNumber)) ||
+    episodes?.[0] ||
     null;
 
   return (
@@ -140,31 +107,12 @@ export default function WatchMovie({ initialMovieData }: WatchMovieProps) {
             key={currentEpNumber} // 🔑 ensures player reloads when ep changes
             title={title}
             slug={slug}
-            embedUrl={currentEpisode?.link_m3u8 || ""}
+            embedUrl={currentEpisode?.servers[0].linkM3u8 || ""}
             servers={currentEpisode?.servers || []}
           />
 
           <div className="watch-container">
-            <WatchMainContent
-              title={title}
-              slug={slug}
-              aliasName={name_english}
-              thumbnail={thumb_url}
-              poster_url={poster_url}
-              imdb={movieData.rating?.toString()}
-              ageRating={movieData.quality}
-              year={movieData.year}
-              duration={`${movieData.time}m`}
-              categories={
-                movieData.category?.map((cat) => ({
-                  name: cat.name,
-                  slug: cat.slug,
-                })) || []
-              }
-              description={movieData.description}
-              episodes={movieData.episode || []}
-              currentEpisode={currentEpNumber}
-            />
+            <WatchMainContent movieData={initialMovieData}/>
 
             {/* side component */}
             <WatchSideContent
@@ -173,11 +121,11 @@ export default function WatchMovie({ initialMovieData }: WatchMovieProps) {
               actors={
                 actors?.map((actor) => ({
                   name: actor.name,
-                  slug: actor.slug,
-                  profile_path: actor.profile_path,
+                  slug: actor.url,
+                  profile_path: actor.image_url,
                 })) || []
               }
-              suggestedMovies={suggestedMovies}
+              suggestedMovies={similarMovies}
               onRatingClick={() => setShowRatingModal(true)}
             />
           </div>

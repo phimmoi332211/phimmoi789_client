@@ -84,9 +84,15 @@ export const fetchMovies = async ({
 export const fetchCategoryList = async () => {
   return customFetch("/publics/categories", "GET");
 };
+
 export const fetchDetailsMovies = async (slug: string) => {
-  return customFetch(CLIENT_ENDPOINTS.PUBLICS.MOVIES.DETAIL(`${slug}/with-similar?limit=100`), "GET");
+  return customFetch(CLIENT_ENDPOINTS.PUBLICS.MOVIES.DETAIL(`${slug}`), "GET");
 };
+
+export const fetchSimilarMovies = async (slug: string) => {
+  return customFetch(CLIENT_ENDPOINTS.PUBLICS.MOVIES.DETAIL(`${slug}/with-similar?limit=12`), "GET");
+};
+
 export const fetchContries = async ({ limit = 10 }: { limit: number }) => {
   return customFetch(CLIENT_ENDPOINTS.PUBLICS.COUNTRIES.LIST, "GET", { limit });
 };

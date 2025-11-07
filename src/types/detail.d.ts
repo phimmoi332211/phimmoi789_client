@@ -1,92 +1,91 @@
 export interface TopMovie {
-  id: string;
-  title: string;
-  alias: string;
-  image: string;
-  episodes: number;
-  hasSubtitle: boolean;
-  hasDubbing: boolean;
-  lang: string;
+  id?: string;
+  title?: string;
+  alias?: string;
+  image?: string;
+  episodes?: number;
+  hasSubtitle?: boolean;
+  hasDubbing?: boolean;
+  lang?: string;
 }
 
 export interface SuggestedMoviesResponse {
-  statusCode: number;
-  message: string;
-  data: {
-    meta: {
-      current: number;
-      pageSize: number;
-      pages: number;
-      total: number;
+  statusCode?: number;
+  message?: string;
+  data?: {
+    meta?: {
+      current?: number;
+      pageSize?: number;
+      pages?: number;
+      total?: number;
     };
-    result: Array<{
-      slug: string;
-      title: string;
-      name_english: string;
-      poster_url: string;
-      episode_total: string;
-      lang: string;
+    result?: Array<{
+      slug?: string;
+      title?: string;
+      name_english?: string;
+      poster_url?: string;
+      episode_total?: string;
+      lang?: string;
     }>;
   };
 }
 
 export interface MovieData {
-  _id: string;
-  title: string;
-  slug: string;
-  thumb_url: string;
-  thumb_alt: string;
-  thumb_title: string;
-  thumb_caption: string;
-  poster_url: string;
-  name_english: string;
-  status: string;
-  episode_total: string;
-  time: string;
-  year: string;
-  quality: string;
-  lang: string;
-  director: string[];
-  actor: string[];
-  actors: Array<Actor>;
-  country: Array<{ name: string; slug: string }>;
-  category: Array<{ name: string; slug: string }>;
+  _id?: string;
+  title?: string;
+  slug?: string;
+  thumb_url?: string;
+  thumb_alt?: string;
+  thumb_title?: string;
+  thumb_caption?: string;
+  poster_url?: string;
+  name_english?: string;
+  status?: string;
+  episode_total?: string;
+  time?: string;
+  year?: string;
+  quality?: string;
+  lang?: string;
+  director?: string[];
+  actors?: Array<Actor>;
+  country?: Array<{ name?: string; slug?: string }>;
+  category?: Array<{ name?: string; slug?: string }>;
   type?: Array<{
-    name: string;
-    slug: string;
+    name?: string;
+    slug?: string;
   }>;
-  description: string;
-  views: number;
-  likes: number;
-  vip1: number;
-  episode: Array<Episode>;
-  parts: Array<Part>;
+  description?: string;
+  views?: number;
+  likes?: number;
+  vip1?: number;
+  episodes?: Array<Episode>;
+  parts?: Array<Part>;
   rating?: number;
   // TabGallery data
   videos?: Array<{
-    id: string;
-    type: 'video' | 'image';
-    url: string;
+    id?: string;
+    type?: 'video' | 'image';
+    url?: string;
     thumbnail?: string;
     title?: string;
   }>;
   images?: Array<Images>;
   // TabCasts data
   casts?: Array<{
-    id: string;
-    name: string;
-    character: string;
-    image: string;
+    id?: string;
+    name?: string;
+    character?: string;
+    image?: string;
   }>;
   // TabSuggestion data
   suggestions?: Array<{
-    id: string;
-    title: string;
-    alias: string;
-    image: string;
-    episodes: number;
-    hasSubtitle: boolean;
-    hasDubbing: boolean;
+    id?: string;
+    title?: string;
+    alias?: string;
+    image?: string;
+    episodes?: number;
+    hasSubtitle?: boolean;
+    hasDubbing?: boolean;
     year?: string;
     duration?: string;
     ageRating?: string;
@@ -95,25 +94,25 @@ export interface MovieData {
   }>;
   // TabEpisodes data
   seasons?: Array<{
-    id: string;
-    number: number;
-    episodes: Array<{
-      id: string;
-      number: number;
-      thumbnail: string;
+    id?: string;
+    number?: number;
+    episodes?: Array<{
+      id?: string;
+      number?: number;
+      thumbnail?: string;
       title?: string;
       duration?: string;
     }>;
   }>;
   currentSeason?: number;
-  currentEpisode?: string;
+  currentEpisode?: number;
   // Actors data
   actors?: Array<{
-    name: string;
-    slug: string;
-    profile_path: string;
+    name?: string;
+    slug?: string;
+    profile_path?: string;
   }>;
-  hashtag: string;
+  hashtag?: string;
   similarMovies?: Array<SimilarMovies>;
 }
 
@@ -127,8 +126,8 @@ export interface Actor {
 }
 
 export interface Images {
-  type: 'video' | 'image';
-  url: string;
+  type?: 'video' | 'image';
+  url?: string;
   thumbnail?: string;
   title?: string;
   alt?: string;
@@ -146,56 +145,60 @@ export interface SimilarMovies {
     linkImage?: string;
     rel?: string;
     target?: string;
+  },
+  movieData?: {
+    origin_name?: string;
+    hashtag?: string;
   }
 }
 
+export interface Server {
+  serverName?: string;
+  status?: string;
+  linkM3u8?: string;
+}
+
 export interface Episode {
-  _id: string;
-  title: string;
-  episode: string;
-  link_embed: string;
-  link_m3u8: string;
-  servers?: Array<{
-    serverName: string;
-    status: string;
-    linkM3u8: string;
-  }>;
+  title?: string;
+  fileName?: string;
+  episode?: number;
+  servers?: Array<Server>
 }
 
 export interface Part {
-  title: string;
-  slug: string;
-  partNumber: string;
+  title?: string;
+  slug?: string;
+  partNumber?: string;
 }
 
 export interface InfoFilmResponse {
-  statusCode: number;
-  message: string;
-  data: MovieData;
+  statusCode?: number;
+  message?: string;
+  data?: MovieData;
 }
 
 export interface ApiResponse<T> {
   meta?: {
-    current: number;
-    pageSize: number;
-    pages: number;
-    total: number;
+    current?: number;
+    pageSize?: number;
+    pages?: number;
+    total?: number;
   };
   data?: T;
   result?: T;
 }
 
 export interface LoadingState {
-  isLoading: boolean;
-  isError: boolean;
+  isLoading?: boolean;
+  isError?: boolean;
   errorMessage?: string;
 }
 
 export interface UseInfoPageResult {
-  movieData: MovieData | null;
-  relatedMovies: Array<MovieData>;
-  recommendedMovies: Array<MovieData>;
-  loading: boolean;
-  showPlayer: boolean;
-  setShowPlayer: (value: boolean) => void;
+  movieData?: MovieData | null;
+  relatedMovies?: Array<MovieData>;
+  recommendedMovies?: Array<MovieData>;
+  loading?: boolean;
+  showPlayer?: boolean;
+  setShowPlayer?: (value?: boolean) => void;
 }

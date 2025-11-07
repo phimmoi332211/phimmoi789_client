@@ -3,23 +3,17 @@
 import React, { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import VideoBar from "./VideoBar";
-import { getM3u8Url } from "@/help/videoHelper";
 import Artplayer from "artplayer";
 import Hls from "hls.js";
 import { useAuth } from "@/context/AuthContext";
-import { useSearchParams } from "next/navigation";
-// import { fetchFilmListHistory, addOrRemoveHistory } from "@/help/helper";
 import { percentToSeconds } from "@/help/videoHelper";
+import { Server } from "@/types/detail";
 
 interface WatchPlayerProps {
   title: string;
   slug: string;
-  embedUrl: string;
-  servers?: Array<{
-    serverName: string;
-    status: string;
-    linkM3u8: string;
-  }>;
+  embedUrl?: string;
+  servers?: Array<Server>;
 }
 
 export default function WatchPlayer({
@@ -28,9 +22,7 @@ export default function WatchPlayer({
   embedUrl,
   servers = [],
 }: WatchPlayerProps) {
-  const [isFocusMode, setIsFocusMode] = useState(false);
   const [m3u8Url, setM3u8Url] = useState<string | null>(embedUrl);
-  const [isLoadingVideo, setIsLoadingVideo] = useState(true);
   const [videoError, setVideoError] = useState<string | null>(null);
   const [useFallback, setUseFallback] = useState(false);
   const [selectedServerIndex, setSelectedServerIndex] = useState<number>(0);
@@ -41,15 +33,9 @@ export default function WatchPlayer({
   const resumeTimeRef = useRef<number | null>(null);
 
   const [showResumeModal, setShowResumeModal] = useState(false);
-  const [resumePercent, setResumePercent] = useState<number>(0);
-  const [resumeLabel, setResumeLabel] = useState<string>("");
 
   const { authUser } = useAuth();
-  const [episode, setEpisode] = useState<number>(0);
   const lastSentPercentRef = useRef<number | null>(null);
-  const hasAddedHistoryRef = useRef<boolean>(false);
-
-  const searchParams = useSearchParams();
 
   useEffect(() => {
     // Khi danh sách server hoặc lựa chọn thay đổi, cập nhật URL phát
@@ -65,16 +51,7 @@ export default function WatchPlayer({
     } else {
       setM3u8Url(embedUrl);
     }
-  }, [servers, selectedServerIndex, embedUrl]);
-
-  useEffect(() => {
-    const epStr = searchParams.get("ep");
-    if (epStr && !isNaN(Number(epStr))) {
-      setEpisode(parseInt(epStr));
-    } else {
-      setEpisode(0);
-    }
-  }, [searchParams]);
+  }, [selectedServerIndex, servers, embedUrl]);
 
   const sendProgress = (percent: number) => {
     if (!authUser) return;
@@ -83,8 +60,6 @@ export default function WatchPlayer({
     if (percent === 0) return;
 
     lastSentPercentRef.current = percent;
-
-    // addOrRemoveHistory(slug, percent, episode, true).catch(() => {});
   };
 
   const handleResume = () => {
@@ -128,45 +103,6 @@ export default function WatchPlayer({
     }
     setShowResumeModal(false);
   };
-
-  useEffect(() => {
-    // fetchFilmListHistory()
-    //   .then((data: any) => {
-    //     try {
-    //       const list = data?.data?.historyFilm ?? [];
-    //       const current = list.find((item: any) => {
-    //         if (item.film?.slug !== slug) return false;
-    //         if (typeof item.episode === "number") {
-    //           return item.episode === episode;
-    //         }
-    //         return true;
-    //       });
-    //       if (!current && !hasAddedHistoryRef.current) {
-    //         addOrRemoveHistory(slug, 0, episode, true).catch(() => {});
-    //         hasAddedHistoryRef.current = true;
-    //       }
-    //       if (
-    //         current &&
-    //         current.percent &&
-    //         current.percent > 0 &&
-    //         current.percent < 100
-    //       ) {
-    //         setResumePercent(current.percent);
-    //         resumePercentRef.current = current.percent;
-    //         setShowResumeModal(true);
-    //       }
-    //     } catch {}
-    //   })
-    //   .catch(() => {});
-  }, [authUser?.access_token, slug]);
-
-  useEffect(() => {
-    if (isFocusMode) {
-      document.body.classList.add("focus-mod");
-    } else {
-      document.body.classList.remove("focus-mod");
-    }
-  }, [isFocusMode]);
 
   useEffect(() => {
     if (!m3u8Url || !playerRef.current) return;
@@ -381,6 +317,8 @@ export default function WatchPlayer({
     backgroundColor: "#000",
   });
 
+  console.log("embedUrlembedUrlembedUrl", embedUrl);
+  
   return (
     <div className="watch-player">
       <div className="wp-bread line-center">
@@ -397,19 +335,19 @@ export default function WatchPlayer({
         {servers && servers.length > 0 && (
           <div className="d-flex align-items-center gap-2 mb-2 flex-wrap">
             <span className="text-light small">Chọn server:</span>
-            {servers.map((s, idx) => (
+            {servers.map((server, idx) => (
               <button
-                key={`${s.serverName}-${idx}`}
+                key={idx}
                 className={`btn btn-sm ${
                   idx === selectedServerIndex
                     ? "btn-primary"
                     : "btn-outline-light"
                 }`}
                 onClick={() => setSelectedServerIndex(idx)}
-                disabled={s.status && s.status !== "success"}
-                title={s.status || ""}
+                disabled={server.status && server.status !== "success"}
+                title={server.status || ""}
               >
-                {s.serverName || `Server #${idx + 1}`}
+                {server.serverName || `Server #${idx + 1}`}
               </button>
             ))}
           </div>

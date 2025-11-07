@@ -3,13 +3,13 @@
 import React, { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { MovieData, TopMovie } from "@/types/detail";
+import { MovieData, SimilarMovies } from "@/types/detail";
 import ActorList from "./ActorList";
 import TopWeeklyMovies from "./TopWeeklyMovies";
 
 interface DetailSideProps {
   movieData: MovieData;
-  suggestedMovies?: TopMovie[];
+  suggestedMovies?: SimilarMovies[];
   isLoadingSuggested?: boolean;
 }
 
@@ -36,6 +36,13 @@ export default function DetailSide({
         <div className="tag-classic">
           <span>Tập {movieData.episode_total}</span>
         </div>
+      )}
+      {movieData.parts && (
+        movieData.parts.map((part) => (
+          <span key={part.slug}>
+            <Link href={`/phim/${part.slug}`}>{part.title}</Link>
+          </span>
+        ))
       )}
     </div>
   );
@@ -91,8 +98,8 @@ export default function DetailSide({
     ));
 
   const renderCountries = () =>
-    movieData.country.map((country) => (
-      <span key={country.slug}>
+    movieData.country.map((country, index) => (
+      <span key={index}>
         <Link href={`/quoc-gia/${country.slug}`}>{country.name}</Link>
       </span>
     ));
@@ -115,9 +122,8 @@ export default function DetailSide({
         <div className="alias-name">{movieData.name_english}</div>
         <div
           id="toggle-detail"
-          className={`btn btn-block btn-basic primary-text mb-2 ${
-            showDetail ? "active" : ""
-          }`}
+          className={`btn btn-block btn-basic primary-text mb-2 ${showDetail ? "active" : ""
+            }`}
           onClick={toggleDetail}
         >
           <span>Thông tin phim</span>

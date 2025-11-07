@@ -34,15 +34,15 @@ const TabCasts: React.FC<TabCastsProps> = ({ movieData }) => {
       </div>
       <div className="box-body">
         <div className="de-actors">
-          {movieData.actors.map((actor) => {
+          {movieData.actors.map((actor, index) => {
             const imageSrc =
-              actor?.profile_path && actor.profile_path.trim() !== ""
-                ? actor.profile_path
+              actor?.image_url && actor.image_url.trim() !== ""
+                ? actor.image_url
                 : "/default-avatar.jpg";
             const actorSlug =
-              actor?.slug && actor.slug.trim() !== "" ? actor.slug : "#";
+              actor?.url && actor.url.trim() !== "" ? actor.url : "#";
             return (
-              <div key={actorSlug || actor.name} className="item-actor">
+              <div key={index}  className="item-actor">
                 <div className="v-item">
                   <Link
                     href={actorSlug === "#" ? "#" : `/actor/${actorSlug}`}

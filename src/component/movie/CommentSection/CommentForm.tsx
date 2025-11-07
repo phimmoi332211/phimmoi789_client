@@ -1,5 +1,4 @@
 import React from "react";
-import ToggleSwitch from "../ToggleSwitch";
 
 export default function CommentForm({
   value,
@@ -27,14 +26,6 @@ export default function CommentForm({
         <div className="chac-left">{value.length} / 1000</div>
       </div>
       <div className="line-center d-flex gap-3 ma-buttons">
-        {/* <div className="v-toggle v-toggle-min line-center">
-          <ToggleSwitch 
-            id="spoil-toggle"
-            defaultState={isSpoiler}
-            onChange={setIsSpoiler}
-          />
-          <div className="text">Tiết lộ?</div>
-        </div> */}
         <div className="flex-grow-1"></div>
         <button 
           className="btn btn-basic btn-submit" 

@@ -3,53 +3,14 @@
 import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { MovieData, TopMovie } from "@/types/detail";
-// import { fetchSuggestedMovies } from "@/services/detail.service";
-
-interface SuggestedMovie {
-  slug: string;
-  title: string;
-  name_english: string;
-  thumb_url: string;
-  poster_url: string;
-  episode_total: string;
-  lang: string;
-}
+import { SimilarMovies } from "@/types/detail";
 
 interface TabSuggestionProps {
-  movieData: MovieData;
+  movieData: SimilarMovies[];
 }
 
 const TabSuggestion: React.FC<TabSuggestionProps> = ({ movieData }) => {
-  const [suggestedMovies, setSuggestedMovies] = useState<TopMovie[]>([]);
-  const [isLoading, setIsLoading] = useState(true);
-  useEffect(() => {
-    // const loadSuggestedMovies = async () => {
-    //   try {
-    //     const response = await fetchSuggestedMovies();
-    //     if (response?.data?.result) {
-    //       const transformedMovies: TopMovie[] = response.data.result.map((movie: SuggestedMovie) => ({
-    //         id: movie.slug,
-    //         title: movie.title,
-    //         alias: movie.name_english,
-    //         image: movie.thumb_url,
-    //         episodes: movie.episode_total ? parseInt(movie.episode_total) : 0,
-    //         hasSubtitle: movie.lang === "Vietsub",
-    //         hasDubbing: movie.lang === "Thuyết minh",
-    //         lang: movie.lang
-    //       }));
-    //       setSuggestedMovies(transformedMovies);
-    //     }
-    //   } catch (error) {
-    //     console.error('Error loading suggested movies:', error);
-    //   } finally {
-    //     setIsLoading(false);
-    //   }
-    // };
-    // loadSuggestedMovies();
-  }, []);
-
-  if (isLoading) {
+  if (movieData.length < 0) {
     return (
       <div className="box">
         <div className="box-header">
@@ -64,7 +25,7 @@ const TabSuggestion: React.FC<TabSuggestionProps> = ({ movieData }) => {
     );
   }
 
-  if (!suggestedMovies || suggestedMovies.length === 0) {
+  if (!movieData || movieData.length === 0) {
     return (
       <div className="box">
         <div className="box-header">
@@ -88,17 +49,17 @@ const TabSuggestion: React.FC<TabSuggestionProps> = ({ movieData }) => {
       </div>
       <div className="box-body">
         <div className="cards-grid-wrapper de-suggest">
-          {suggestedMovies.map((movie) => (
-            <div key={movie.id} className="sw-item">
-              <Link href={`/phim/${movie.id}`} className="v-thumbnail">
+          {movieData.map((movie, index) => (
+            <div key={index} className="sw-item">
+              <Link href={`/phim/${movie.slug}`} className="v-thumbnail">
                 <div className="pin-new m-pin-new">
                   <div className="line-center line-pd">{movie.lang}</div>
                 </div>
                 <div>
                   <Image
-                    alt={`Xem Phim ${movie.title} Vietsub HD Online - Phimmoi789`}
+                    alt={movie.featuredImage.alt}
                     loading="lazy"
-                    src={movie.image}
+                    src={movie.featuredImage.url}
                     width={180}
                     height={260}
                   />
@@ -106,13 +67,13 @@ const TabSuggestion: React.FC<TabSuggestionProps> = ({ movieData }) => {
               </Link>
               <div className="info">
                 <h4 className="item-title lim-1">
-                  <Link title={movie.title} href={`/phim/${movie.id}`}>
+                  <Link title={movie.title} href={`/phim/${movie.slug}`}>
                     {movie.title}
                   </Link>
                 </h4>
                 <h4 className="alias-title lim-1">
-                  <Link title={movie.alias} href={`/phim/${movie.id}`}>
-                    {movie.alias}
+                  <Link title={movie.title} href={`/phim/${movie.slug}`}>
+                    {movie.title}
                   </Link>
                 </h4>
               </div>

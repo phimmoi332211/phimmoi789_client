@@ -2,11 +2,9 @@
 
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
-import axios from "axios";
 import { toast } from "react-toastify";
 import { useAuth } from "@/context/AuthContext";
 import { modalEvent } from "@/events/modal";
-// import { fetchPlaylists, updatePlaylist, removeFilmFromPlaylist } from "@/services/detail.service";
 
 interface Film {
   title: string;
@@ -39,22 +37,6 @@ export default function PlaylistDropdown({
   const fetchPlaylistsData = async () => {
     if (!authUser?.access_token) return;
     try {
-      // setIsLoading(true);
-      // const response = await fetchPlaylists() as { data?: { result?: Playlist[] } };
-      // if (response?.data?.result) {
-      //   const playlistsData = response.data.result;
-      //   setPlaylists(playlistsData);
-      //   const selectedIds = new Set<string>();
-      //   playlistsData.forEach(playlist => {
-      //     if (playlist.films.some(film => film.slug === slug)) {
-      //       selectedIds.add(playlist._id);
-      //     }
-      //   });
-      //   setSelectedPlaylists(selectedIds);
-      // } else {
-      //   setPlaylists([]);
-      //   setSelectedPlaylists(new Set());
-      // }
     } catch (error) {
       toast.error("Không thể tải danh sách playlist!");
       setPlaylists([]);
@@ -105,41 +87,12 @@ export default function PlaylistDropdown({
         toast.error("Không tìm thấy playlist!");
         return;
       }
-      let response;
-      // if (selectedPlaylists.has(playlistId)) {
-      //   // Đã checked, giờ bỏ check → xóa phim khỏi playlist
-      //   response = await removeFilmFromPlaylist(playlistId, slug) as { statusCode?: number };
-      // } else {
-      //   // Chưa checked, giờ check → thêm phim vào playlist
-      //   response = await updatePlaylist([
-      //       {
-      //         title: playlist.title,
-      //         slug: slug
-      //       }
-      //   ]) as { statusCode?: number, data?: { playList?: Playlist[] } };
-      // }
-      // if (response?.statusCode === 200) {
-      //   setSelectedPlaylists(prev => {
-      //     const newSet = new Set(prev);
-      //     if (newSet.has(playlistId)) {
-      //       newSet.delete(playlistId);
-      //     } else {
-      //       newSet.add(playlistId);
-      //     }
-      //     return newSet;
-      //   });
-      //  toast.success(selectedPlaylists.has(playlistId) ? "Đã xóa phim khỏi playlist!" : "Đã thêm phim vào playlist!");
-      //}
     } catch (error) {
       toast.error("Không thể cập nhật playlist!");
     }
   };
 
   const handleClick = () => {
-    if (!authUser?.access_token) {
-      modalEvent.showLogin();
-      return;
-    }
     setShowDropdown(!showDropdown);
   };
 

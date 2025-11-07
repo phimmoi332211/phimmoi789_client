@@ -1,8 +1,6 @@
 "use client";
 
 import React from "react";
-import Link from "next/link";
-import Image from "next/image";
 import RatingButton from "./RatingButton";
 import ActorList from './ActorList';
 import SuggestedMovies from './SuggestedMovies';

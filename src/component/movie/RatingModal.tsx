@@ -1,12 +1,11 @@
 "use client";
 
 import React, { useState } from "react";
-import axios from "axios";
 import { ratingEvent } from "@/events/modal";
 import { useAuth } from "@/context/AuthContext";
 import Image from "next/image";
 import { toast } from "react-toastify";
-// import { postRating } from "@/services/detail.service";
+import { postRating } from "@/help/helper";
 
 interface RatingModalProps {
   isOpen: boolean;
@@ -14,6 +13,7 @@ interface RatingModalProps {
   title?: string;
   rating?: number;
   film?: string;
+  _id?: string;
   authToken?: string;
 }
 
@@ -23,9 +23,8 @@ export default function RatingModal({
   title,
   rating = 10,
   film,
-  authToken,
+  _id,
 }: RatingModalProps) {
-  const { authUser } = useAuth();
   const [activeRating, setActiveRating] = useState<number | null>(null);
   const [comment, setComment] = useState("");
   const [submitting, setSubmitting] = useState(false);
@@ -37,56 +36,23 @@ export default function RatingModal({
   };
 
   const handleSubmit = async () => {
-    // if (!activeRating || !film) return;
-    // setSubmitting(true);
-    // try {
-    //   const body: any = {
-    //     film,
-    //     content: comment,
-    //     point: activeRating,
-    //     upVote: 0,
-    //     downVote: 0,
-    //   };
-    // const response = await postRating(body) as { data?: any };
-    // const data = response?.data || {};
-    //   const ratingEmojis = [
-    //     { point: 5, emoji: "😍", text: "Tuyệt vời" },
-    //     { point: 4, emoji: "😊", text: "Phim hay" },
-    //     { point: 3, emoji: "🙂", text: "Khá ổn" },
-    //     { point: 2, emoji: "😕", text: "Phim chán" },
-    //     { point: 1, emoji: "😡", text: "Dở tệ" },
-    //   ];
-    //   const found = ratingEmojis.find((e) => e.point === activeRating);
-    //   const newReview = {
-    //     id: data._id || Math.random().toString(),
-    //     userName: authUser?.user?.name || "Bạn",
-    //     content: comment,
-    //     time: "Vừa xong",
-    //     avatar:
-    //       typeof authUser?.user === "object" && authUser?.user?.avatar
-    //         ? authUser.user.avatar
-    //         : "/image/16.jpg",
-    //     rating: found ? found.text : "",
-    //     ratingEmoji: found ? found.emoji : "",
-    //     isAdmin: false,
-    //     isPinned: false,
-    //     upvotes: 0,
-    //     downvotes: 0,
-    //     tabUser: authUser?.user?.name || "Bạn",
-    //     replies: [],
-    //     showReplies: false,
-    //     showReplyForm: false,
-    //   };
-    //   ratingEvent.emit(newReview);
-    //   setActiveRating(null);
-    //   setComment("");
-    //   toast.success("Cám ơn bạn đã đánh giá!");
-    //   onClose();
-    // } catch (err) {
-    //   alert("Không thể gửi đánh giá. Vui lòng thử lại!");
-    // } finally {
-    //   setSubmitting(false);
-    // }
+    if (!activeRating || !_id) return;
+    setSubmitting(true);
+    try {
+      const body: any = {
+        movie: _id,
+        stars: activeRating,
+      };
+      const ratingRes =  await postRating(body) as { data?: any };
+      setActiveRating(null);
+      setComment("");
+      toast.success(ratingRes?.data?.message);
+      onClose();
+    } catch (err) {
+      alert("Không thể gửi đánh giá. Vui lòng thử lại!");
+    } finally {
+      setSubmitting(false);
+    }
   };
 
   return (
@@ -187,7 +153,7 @@ export default function RatingModal({
                   <span>Dở tệ</span>
                 </div>
               </div>
-              <div className="rate-comment">
+              {/* <div className="rate-comment">
                 <textarea
                   className="form-control v-form-control"
                   rows={3}
@@ -196,7 +162,7 @@ export default function RatingModal({
                   value={comment}
                   onChange={(e) => setComment(e.target.value)}
                 />
-              </div>
+              </div> */}
             </div>
             <div className="is-footer gap-3">
               <button

@@ -3,12 +3,12 @@
 import React from "react";
 import DetailMain from "./DetailMain";
 import DetailSide from "./DetailSide";
-import { MovieData, TopMovie } from "@/types/detail";
+import { MovieData, SimilarMovies } from "@/types/detail";
 
 interface DetailContainerProps {
   movieData: MovieData;
   onRatingClick: () => void;
-  suggestedMovies?: TopMovie[];
+  suggestedMovies?: SimilarMovies[];
   isLoadingSuggested?: boolean;
 }
 

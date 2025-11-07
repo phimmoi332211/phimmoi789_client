@@ -32,10 +32,12 @@ export interface SuggestedMoviesResponse {
 
 export interface MovieData {
   _id: string;
-  id: string;
   title: string;
   slug: string;
   thumb_url: string;
+  thumb_alt: string;
+  thumb_title: string;
+  thumb_caption: string;
   poster_url: string;
   name_english: string;
   status: string;
@@ -46,6 +48,7 @@ export interface MovieData {
   lang: string;
   director: string[];
   actor: string[];
+  actors: Array<Actor>;
   country: Array<{ name: string; slug: string }>;
   category: Array<{ name: string; slug: string }>;
   type?: Array<{
@@ -57,6 +60,7 @@ export interface MovieData {
   likes: number;
   vip1: number;
   episode: Array<Episode>;
+  parts: Array<Part>;
   rating?: number;
   // TabGallery data
   videos?: Array<{
@@ -66,13 +70,7 @@ export interface MovieData {
     thumbnail?: string;
     title?: string;
   }>;
-  images?: Array<{
-    id: string;
-    type: 'video' | 'image';
-    url: string;
-    thumbnail?: string;
-    title?: string;
-  }>;
+  images?: Array<Images>;
   // TabCasts data
   casts?: Array<{
     id: string;
@@ -116,6 +114,39 @@ export interface MovieData {
     profile_path: string;
   }>;
   hashtag: string;
+  similarMovies?: Array<SimilarMovies>;
+}
+
+export interface Actor {
+  name?: string;
+  description?: string;
+  birthday?: string;
+  height?: string;
+  url?: string;
+  image_url?: string;
+}
+
+export interface Images {
+  type: 'video' | 'image';
+  url: string;
+  thumbnail?: string;
+  title?: string;
+  alt?: string;
+  caption?: string;
+}
+
+export interface SimilarMovies {
+  title?: string;
+  slug?: string;
+  lang?: string;
+  featuredImage?: {
+    url?: string;
+    alt?: string;
+    caption?: string;
+    linkImage?: string;
+    rel?: string;
+    target?: string;
+  }
 }
 
 export interface Episode {
@@ -129,6 +160,12 @@ export interface Episode {
     status: string;
     linkM3u8: string;
   }>;
+}
+
+export interface Part {
+  title: string;
+  slug: string;
+  partNumber: string;
 }
 
 export interface InfoFilmResponse {

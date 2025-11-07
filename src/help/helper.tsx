@@ -85,10 +85,26 @@ export const fetchCategoryList = async () => {
   return customFetch("/publics/categories", "GET");
 };
 export const fetchDetailsMovies = async (slug: string) => {
-  return customFetch(CLIENT_ENDPOINTS.PUBLICS.MOVIES.DETAIL(slug), "GET");
+  return customFetch(CLIENT_ENDPOINTS.PUBLICS.MOVIES.DETAIL(`${slug}/with-similar?limit=100`), "GET");
 };
 export const fetchContries = async ({ limit = 10 }: { limit: number }) => {
   return customFetch(CLIENT_ENDPOINTS.PUBLICS.COUNTRIES.LIST, "GET", { limit });
+};
+
+export const postRating = async (data: any) => {
+  return customFetch(
+    `/rating/rate-movie`,
+    "POST",
+    data
+  );
+};
+
+export const postComments = async (data: any) => {
+  return customFetch(
+    `/comments`,
+    "POST",
+    data
+  );
 };
 
 // Lấy danh sách diễn viên (phân trang, tìm kiếm)

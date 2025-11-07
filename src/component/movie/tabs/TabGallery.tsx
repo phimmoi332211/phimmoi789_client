@@ -3,27 +3,13 @@
 import React from "react";
 import Image from "next/image";
 import Link from "next/link";
-
-interface MediaItem {
-  id: string;
-  type: 'video' | 'image';
-  url: string;
-  thumbnail?: string;
-  title?: string;
-}
-
-interface MovieData {
-  title: string;
-  videos?: MediaItem[];
-  images?: MediaItem[];
-}
+import { MovieData } from "@/types/detail";
 
 interface TabGalleryProps {
   movieData: MovieData;
 }
 
 export default function TabGallery({ movieData }: TabGalleryProps) {
-  // Add null checks for videos and images
   const videos = movieData?.videos || [];
   const images = movieData?.images || [];
 
@@ -57,10 +43,10 @@ export default function TabGallery({ movieData }: TabGalleryProps) {
         <div className="heading-sm mb-3">Ảnh</div>
         {images.length > 0 ? (
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4" id="image-gallery">
-            {images.map((image) => (
-              <Link key={image.id} href={image.url} className="media-item block relative aspect-[2/3] overflow-hidden rounded-lg">
+            {images.map((image, index) => (
+              <Link key={index} href={image.url} className="media-item block relative aspect-[2/3] overflow-hidden rounded-lg">
                 <Image 
-                  alt={image.title || `Image ${image.id}`} 
+                  alt={image.title || `Image ${index}`} 
                   src={image.url} 
                   fill
                   sizes="(max-width: 768px) 50vw, (max-width: 1200px) 33vw, 25vw"

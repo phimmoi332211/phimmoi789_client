@@ -9,12 +9,12 @@ export default function TabSwitcher({ activeTab, onChangeTab }: any) {
       >
         Bình luận
       </button>
-      <button 
+      {/* <button 
         className={`item ${activeTab === 'reviews' ? 'active' : ''}`} 
         onClick={() => onChangeTab('reviews')}
       >
         Đánh giá
-      </button>
+      </button> */}
     </div>
   );
 } 

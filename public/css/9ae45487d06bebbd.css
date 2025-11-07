@@ -3216,6 +3216,7 @@ footer .true .line-center {
 }
 
 .cc-top .item .h-item {
+    padding-left: 10px;
     flex-grow: 1;
     background-color: #ffffff05;
     border-radius: .5rem;

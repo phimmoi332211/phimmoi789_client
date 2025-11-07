@@ -3,12 +3,7 @@
 import React from "react";
 import Image from "next/image";
 import Link from "next/link";
-
-interface Actor {
-  name: string;
-  slug: string;
-  profile_path: string;
-}
+import { Actor } from "@/types/detail";
 
 interface ActorListProps {
   actors: Actor[];
@@ -26,11 +21,11 @@ export default function ActorList({ actors }: ActorListProps) {
         <div className="child-actors-list">
           {actors.map((actor) => {
             const imageSrc =
-              actor?.profile_path && actor.profile_path.trim() !== ""
-                ? actor.profile_path
+              actor?.url && actor.url.trim() !== ""
+                ? actor.url
                 : "/default-avatar.jpg";
             const actorSlug =
-              actor?.slug && actor.slug.trim() !== "" ? actor.slug : "#";
+              actor?.url && actor.url.trim() !== "" ? actor.url : "#";
             return (
               <div key={actorSlug || actor.name} className="v-item">
                 <Link

@@ -5,7 +5,7 @@ export const CLIENT_ENDPOINTS = {
   PUBLICS: {
     MOVIES: {
       LIST: "/articles/public/movies",
-      DETAIL: (slug: string) => `/publics/movies/${slug}`,
+      DETAIL: (slug: string) => `/articles/movie/${slug}`,
     },
     BANNERS: {
       LIST: "/sidebar/public",

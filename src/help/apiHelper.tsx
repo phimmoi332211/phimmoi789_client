@@ -3,13 +3,6 @@ export const BASE_URL =
   typeof window === "undefined"
     ? process.env.API_BACKEND
     : process.env.NEXT_PUBLIC_API_BACKEND;
-console.log("BASE_URL: ", BASE_URL);
-console.log(
-  "BASE_URL: ",
-  typeof window === "undefined"
-    ? process.env.PUBLIC_DOMAIN
-    : window.location.origin
-);
 // Tạo fetch options không cần token
 export const getFetchOptions = (method: string, data?: any): RequestInit => {
   const isFormData = data instanceof FormData;
@@ -47,7 +40,6 @@ export const getFetchOptions = (method: string, data?: any): RequestInit => {
   if (data && method !== "GET") {
     options.body = isFormData ? data : JSON.stringify(data);
   }
-  console.log("options: ", options);
 
   return options;
 };
@@ -89,7 +81,6 @@ export const getFetchOptionsToken = (
   if (data && method !== "GET") {
     options.body = isFormData ? data : JSON.stringify(data);
   }
-  console.log("options: ", options);
   return options;
 };
 

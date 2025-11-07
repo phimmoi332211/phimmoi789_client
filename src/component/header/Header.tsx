@@ -219,7 +219,7 @@ export default function HeaderPage({ menuList }: HeaderPageProps) {
                 })}
               </ul>
             )}
-            <div className="flex-grow-1"></div>
+            {/* <div className="flex-grow-1"></div>
             {!authUser ? (
               <div id="main_user" className="mb-3">
                 <div
@@ -304,7 +304,7 @@ export default function HeaderPage({ menuList }: HeaderPageProps) {
                   </ul>
                 </div>
               </div>
-            )}
+            )} */}
           </div>
         </div>
       </header >

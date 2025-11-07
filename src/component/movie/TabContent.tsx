@@ -103,7 +103,7 @@ export default function TabContent({ movieData }: TabContentProps) {
         className={`fade tab-pane ${activeTab === "suggestion" ? "active show" : ""}`}
         style={{ display: activeTab === "suggestion" ? "block" : "none" }}
       >
-        <TabSuggestion movieData={movieData} />
+        <TabSuggestion movieData={movieData.similarMovies} />
       </div>
     </div>
   );

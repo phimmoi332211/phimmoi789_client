@@ -1,14 +1,10 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import Link from "next/link";
 import { MovieData } from "@/types/detail";
-import RatingModal from "./RatingModal";
 import RatingButton from "./RatingButton";
-import { useAuth } from "@/context/AuthContext";
-import { modalEvent } from '@/events/modal';
 import { toast } from "react-toastify";
-import axios from "axios";
 import PlaylistDropdown from "./PlaylistDropdown";
 import FavoriteButton from "./FavoriteButton";
 import ShareButton from "./ShareButton";
@@ -24,16 +20,10 @@ interface Playlist {
 }
 
 export default function ActionBar({ movieData, onRatingClick }: ActionBarProps) {
-  const { authUser, setAuthUser } = useAuth();
-  const { episode = [], rating = 10, title, slug } = movieData || {};
+  const { rating = 10, title, slug } = movieData || {};
   const [showShareDropdown, setShowShareDropdown] = useState(false);
 
   const handleAction = async (action: string) => {
-    if (!authUser?.access_token) {
-      modalEvent.showLogin();
-      return;
-    }
-
     // Xử lý các hành động khi đã đăng nhập
     switch(action) {
       case 'comment':
@@ -50,38 +40,6 @@ export default function ActionBar({ movieData, onRatingClick }: ActionBarProps) 
         onRatingClick();
         break;
     }
-  };
-
-  const handleShare = async (type: string) => {
-    const url = `${window.location.origin}/phim/${slug}`;
-    const shareText = `Xem phim ${title} tại Phimmoi789`;
-
-    switch(type) {
-      case 'copy':
-        try {
-          await navigator.clipboard.writeText(url);
-          toast.success("Đã sao chép link!", {
-            position: "top-center",
-            autoClose: 2000,
-          });
-        } catch (err) {
-          toast.error("Không thể sao chép link!", {
-            position: "top-center",
-            autoClose: 2000,
-          });
-        }
-        break;
-      case 'facebook':
-        window.open(`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(url)}`, '_blank');
-        break;
-      case 'twitter':
-        window.open(`https://twitter.com/intent/tweet?text=${encodeURIComponent(shareText)}&url=${encodeURIComponent(url)}`, '_blank');
-        break;
-      case 'telegram':
-        window.open(`https://t.me/share/url?url=${encodeURIComponent(url)}&text=${encodeURIComponent(shareText)}`, '_blank');
-        break;
-    }
-    setShowShareDropdown(false);
   };
 
   // Đóng dropdown khi click ra ngoài

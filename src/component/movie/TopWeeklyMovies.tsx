@@ -3,19 +3,10 @@
 import React from "react";
 import Image from "next/image";
 import Link from "next/link";
-
-interface TopMovie {
-  id: string;
-  title: string;
-  alias: string;
-  image: string;
-  episodes: number;
-  hasSubtitle: boolean;
-  hasDubbing: boolean;
-}
+import { SimilarMovies } from "@/types/detail";
 
 interface TopWeeklyMoviesProps {
-  movies: TopMovie[];
+  movies: SimilarMovies[];
 }
 
 
@@ -35,24 +26,19 @@ const TopWeeklyMovies: React.FC<TopWeeklyMoviesProps> = ({ movies }) => {
       <div className="child-content">
         <div className="cc-top">
           {movies.map((movie, index) => (
-            <div key={movie.id} className="item">
+            <div key={index} className="item">
               <div className="position">{index + 1}</div>
               <div className="h-item">
                 <div className="v-thumb-m">
-                  <Link className="v-thumbnail" href={`/phim/${movie.id}`}>
-                    <Image alt={movie.title} src={movie.image} width={150} height={225} />
+                  <Link className="v-thumbnail" href={`/phim/${movie.slug}`}>
+                    <Image alt={movie.title} src={movie.featuredImage.url} width={150} height={225} />
                   </Link>
                 </div>
                 <div className="info">
                   <h4 className="item-title lim-2">
-                    <Link title={movie.title} href={`/phim/${movie.id}`}>{movie.title}</Link>
+                    <Link title={movie.title} href={`/phim/${movie.slug}`}>{movie.title}</Link>
                   </h4>
-                  <div className="alias-title mb-2 lim-1">{movie.alias}</div>
-                  <div className="info-line">
-                    {movie.episodes && <div className="tag-small">Tập {movie.episodes}</div>}
-                    {movie.hasSubtitle && <div className="tag-small">Vietsub</div>}
-                    {movie.hasDubbing && <div className="tag-small">Thuyết minh</div>}
-                  </div>
+                  <div className="alias-title mb-2 lim-1">{movie.title}</div>
                 </div>
               </div>
             </div>

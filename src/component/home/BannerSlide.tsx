@@ -88,7 +88,13 @@ export default function BannerSlide({ slideData }: BannerSlideProps) {
                   <Link className="slide-url" href={href}>
                   </Link>
                   <div
-                    className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+                    className="
+                      absolute inset-0 
+                      bg-cover bg-center bg-no-repeat 
+                      h-[300px] 
+                      block md:hidden
+                      z-0
+                    "
                     style={{ backgroundImage: `url("${poster}")` }}
                   ></div>
 

@@ -1,15 +1,12 @@
 "use client";
 
 import { useState, useEffect, useRef } from "react";
-import { toast } from "react-toastify";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 
 import { Define } from "@/types/define";
 import { NAVIGATION, removeVietnameseTones } from "@/ultis/ultis";
 import LoginModal from "../modal/LoginModal";
-import RegisterModal from "../modal/RegisterModal";
-import ForgotPasswordModal from "../modal/ForgotPasswordModal";
 import { useAuth } from "@/context/AuthContext";
 import { modalEvent } from "@/events/modal";
 import Image from "next/image";
@@ -23,13 +20,11 @@ export default function HeaderPage({ menuList }: HeaderPageProps) {
   const router = useRouter();
   const [keyword, setKeyword] = useState("");
   const [showLoginModal, setShowLoginModal] = useState(false);
-  const [showRegisterModal, setShowRegisterModal] = useState(false);
-  const [showForgotModal, setShowForgotModal] = useState(false);
   const [showUserDropdown, setShowUserDropdown] = useState(false);
 
   const userDropdownRef = useRef(null);
 
-  const { authUser, setAuthUser, logout } = useAuth();
+  const { setAuthUser } = useAuth();
 
   // Load user from localStorage
   useEffect(() => {
@@ -69,26 +64,18 @@ export default function HeaderPage({ menuList }: HeaderPageProps) {
   useEffect(() => {
     const handleShowLogin = () => {
       setShowLoginModal(true);
-      setShowRegisterModal(false);
-      setShowForgotModal(false);
     };
 
     const handleShowRegister = () => {
       setShowLoginModal(false);
-      setShowRegisterModal(true);
-      setShowForgotModal(false);
     };
 
     const handleShowForgot = () => {
       setShowLoginModal(false);
-      setShowRegisterModal(false);
-      setShowForgotModal(true);
     };
 
     const handleHideModals = () => {
       setShowLoginModal(false);
-      setShowRegisterModal(false);
-      setShowForgotModal(false);
     };
 
     modalEvent.on("showLogin", handleShowLogin);
@@ -110,23 +97,12 @@ export default function HeaderPage({ menuList }: HeaderPageProps) {
     }
   };
 
-  const handleToggleUserDropdown = () => {
-    setShowUserDropdown((prev) => !prev);
-  };
-
-  const handleLoginClick = () => modalEvent.showLogin();
   const handleRegisterClick = () => modalEvent.showRegister();
   const handleCloseModals = () => modalEvent.hideModals();
 
-  const handleLogout = () => {
-    logout();
-    toast.success("Đã đăng xuất!");
-    router.push("/phim-hay");
-  };
-
   return (
     <>
-      <header className="fly menuDesktop">
+      <header className="fly menuDesktop bg-transparent fixed z-10 py-2.5">
         <div className="header-elements">
           <Link id="logo" title="Phimmoi789" href="/phim-hay">
             <Image src="/logo.webp" alt="logo" width={134} height={40} />
@@ -219,92 +195,6 @@ export default function HeaderPage({ menuList }: HeaderPageProps) {
                 })}
               </ul>
             )}
-            {/* <div className="flex-grow-1"></div>
-            {!authUser ? (
-              <div id="main_user" className="mb-3">
-                <div
-                  className="button-user button-login"
-                  onClick={handleLoginClick}
-                >
-                  <div className="line-center">
-                    <i className="fa-solid fa-user ms-1"></i>
-                    <span>Thành viên</span>
-                  </div>
-                </div>
-              </div>
-            ) : (
-              <div id="main_user" className="user-logged" ref={userDropdownRef}>
-                <div className="show dropdown">
-                  <div
-                    className="header-user"
-                    onClick={handleToggleUserDropdown}
-                  >
-                    <div className="line-center gap-3">
-                      <div className="user-avatar">
-                        <Image
-                          alt={authUser?.user?.name}
-                          src={authUser?.user?.avatar || "/image/16.jpg"}
-                          fill
-                        />
-                      </div>
-                      <i className="fa-solid fa-caret-down"></i>
-                    </div>
-                  </div>
-                  <ul
-                    className={`v-dropdown-menu user-dropdown bg-dark dropdown-menu dropdown-menu-end`}
-                    style={{
-                      display: showUserDropdown ? "block" : "none",
-                      right: "-10px",
-                      position: "absolute",
-                      top: "100%",
-                      minWidth: "180px",
-                      zIndex: 9999,
-                    }}
-                  >
-                    <div className="dropdown-blank flex-column align-items-start gap-0 w-100">
-                      <div className="small-text">Chào,</div>
-                      <div className="d-block lim-1">
-                        <strong>
-                          {authUser?.user?.name || authUser?.user?.email}
-                        </strong>
-                      </div>
-                    </div>
-                    <hr className="my-2" />
-                    <Link className="dropdown-item" href="/user/favorite">
-                      <div className="line-center">
-                        <i className="fa-solid fa-heart"></i>
-                        <span>Yêu thích</span>
-                      </div>
-                    </Link>
-                    <Link className="dropdown-item" href="/user/playlist">
-                      <div className="line-center">
-                        <i className="fa-solid fa-plus"></i>
-                        <span>Danh sách</span>
-                      </div>
-                    </Link>
-                    <Link className="dropdown-item" href="/user/xem-tiep">
-                      <div className="line-center">
-                        <i className="fa-solid fa-history"></i>
-                        <span>Xem tiếp</span>
-                      </div>
-                    </Link>
-                    <Link className="dropdown-item" href="/user/profile">
-                      <div className="line-center">
-                        <i className="fa-solid fa-user"></i>
-                        <span>Tài khoản</span>
-                      </div>
-                    </Link>
-                    <hr className="my-2" />
-                    <div className="dropdown-item" onClick={handleLogout}>
-                      <div className="line-center">
-                        <i className="fa-solid fa-right-from-bracket"></i>
-                        <span>Thoát</span>
-                      </div>
-                    </div>
-                  </ul>
-                </div>
-              </div>
-            )} */}
           </div>
         </div>
       </header >
@@ -316,26 +206,6 @@ export default function HeaderPage({ menuList }: HeaderPageProps) {
           onRegisterClick={handleRegisterClick}
         />
       )}
-
-      {
-        showRegisterModal && (
-          <RegisterModal
-            isOpen={showRegisterModal}
-            onClose={handleCloseModals}
-            onLoginClick={handleLoginClick}
-          />
-        )
-      }
-
-      {
-        showForgotModal && (
-          <ForgotPasswordModal
-            isOpen={showForgotModal}
-            onClose={handleCloseModals}
-            onLoginClick={handleLoginClick}
-          />
-        )
-      }
     </>
   );
 }

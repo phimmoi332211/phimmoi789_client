@@ -4,34 +4,21 @@ import { useState, useRef } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { FaSearch } from "react-icons/fa";
-import { toast } from "react-toastify";
 import { useRouter } from "next/navigation";
-import { useAuth } from "@/context/AuthContext";
 import { Define } from "@/types/define";
-import LoginModal from "../modal/LoginModal";
-import RegisterModal from "../modal/RegisterModal";
-import ForgotPasswordModal from "../modal/ForgotPasswordModal";
 
 type HeaderMobileSimpleProps = {
   menuList: Define.DataRepository<Define.Menu> | null;
 };
 
 export default function HeaderMobileSimple({ menuList }: HeaderMobileSimpleProps) {
-  const { authUser, logout } = useAuth();
   const router = useRouter();
-
   const menus = menuList?.data?.menuTree || [];
-
   const [isOpen, setIsOpen] = useState(false);
   const [openDropdown, setOpenDropdown] = useState<string | null>(null);
   const [showSearch, setShowSearch] = useState(false);
   const [keyword, setKeyword] = useState("");
   const inputRef = useRef<HTMLInputElement>(null);
-
-  // Modal states
-  const [showLoginModal, setShowLoginModal] = useState(false);
-  const [showRegisterModal, setShowRegisterModal] = useState(false);
-  const [showForgotModal, setShowForgotModal] = useState(false);
 
   // Toggle main menu
   const toggleMenu = () => {
@@ -47,13 +34,6 @@ export default function HeaderMobileSimple({ menuList }: HeaderMobileSimpleProps
   // Hover logic
   const handleMouseEnter = (slug: string) => setOpenDropdown(slug);
   const handleMouseLeave = () => setOpenDropdown(null);
-
-  const handleLoginClick = () => setShowLoginModal(true);
-  const handleLogout = () => {
-    logout();
-    toast.success("Đã đăng xuất!");
-    router.push("/phim-hay");
-  };
 
   const handleSearch = () => {
     if (keyword.trim()) {
@@ -157,9 +137,8 @@ export default function HeaderMobileSimple({ menuList }: HeaderMobileSimpleProps
                       >
                         <span>{item?.categoryDetails?.name}</span>
                         <i
-                          className={`fa fa-angle-${
-                            openDropdown === slug ? "up" : "down"
-                          }`}
+                          className={`fa fa-angle-${openDropdown === slug ? "up" : "down"
+                            }`}
                         />
                       </div>
 
@@ -182,70 +161,9 @@ export default function HeaderMobileSimple({ menuList }: HeaderMobileSimpleProps
                   );
                 })}
             </ul>
-
-            {/* Auth section */}
-            <div className="mt-4 border-t border-gray-700 pt-3">
-              {!authUser ? (
-                <div
-                  className="text-center text-white py-2 cursor-pointer hover:text-red-500"
-                  onClick={handleLoginClick}
-                >
-                  <i className="fa-solid fa-user me-2"></i> Đăng nhập
-                </div>
-              ) : (
-                <div className="text-center text-white py-2">
-                  Xin chào,{" "}
-                  <strong>
-                    {authUser?.user?.name || authUser?.user?.email}
-                  </strong>
-                  <div
-                    onClick={handleLogout}
-                    className="text-sm text-gray-400 hover:text-red-400 cursor-pointer mt-1"
-                  >
-                    Đăng xuất
-                  </div>
-                </div>
-              )}
-            </div>
           </nav>
         )}
       </header>
-
-      {/* Modal section */}
-      {showLoginModal && (
-        <LoginModal
-          isOpen={showLoginModal}
-          onClose={() => setShowLoginModal(false)}
-          onRegisterClick={() => {
-            setShowLoginModal(false);
-            setShowRegisterModal(true);
-          }}
-          onForgotClick={() => {
-            setShowLoginModal(false);
-            setShowForgotModal(true);
-          }}
-        />
-      )}
-      {showRegisterModal && (
-        <RegisterModal
-          isOpen={showRegisterModal}
-          onClose={() => setShowRegisterModal(false)}
-          onLoginClick={() => {
-            setShowRegisterModal(false);
-            setShowLoginModal(true);
-          }}
-        />
-      )}
-      {showForgotModal && (
-        <ForgotPasswordModal
-          isOpen={showForgotModal}
-          onClose={() => setShowForgotModal(false)}
-          onLoginClick={() => {
-            setShowForgotModal(false);
-            setShowLoginModal(true);
-          }}
-        />
-      )}
     </>
   );
 }

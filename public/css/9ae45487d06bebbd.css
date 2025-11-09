@@ -556,7 +556,7 @@ background: #fff;
 .container {
     width: 100%;
     max-width: 1900px;
-    padding: 0 50px
+    /* padding: 0 50px */
 }
 
 #wrapper {

@@ -29,31 +29,3 @@ export interface NameUrlRef {
   name: string;
   url: string;
 }
-
-export interface Film {
-  _id?: string;
-  name?: string;
-  url?: string;
-  description?: string;
-  year?: number | string;
-  status?: MovieStatusEnum;
-  type?: MovieTypeEnum;
-  current_episode?: number;
-  total_episode?: number;
-  country?: NameUrlRef;
-  category?: NameUrlRef[];
-  posters?: string[];
-  folder?: string;
-  actors?: NameUrlRef[];
-  directors?: NameUrlRef[];
-  duration?: number;
-  isDeleted?: boolean;
-  quality?: QualityEnum | string;
-  trailer?: string;
-  tags?: string[];
-  release_date?: string | Date;
-  origin_name?: string;
-  tmdb?: TMDB;
-  thumbnail?: string;
-  poster?: string;
-}

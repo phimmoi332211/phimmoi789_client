@@ -7,8 +7,9 @@ interface MovieDetailProps {
 }
 
 export default async function MovieDetail({ slug }: MovieDetailProps) {
+  const page = 12;
   const filmResponse = await fetchDetailsMovies(slug);
-  const similarMovies = await fetchSimilarMovies(slug);
+  const similarMovies = await fetchSimilarMovies(slug, page);
 
   const payload = (filmResponse as any)?.data;
   

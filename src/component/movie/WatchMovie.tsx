@@ -2,11 +2,7 @@
 
 import React, { useState, useEffect } from "react";
 import { useParams, useSearchParams } from "next/navigation";
-import { MovieData, TopMovie } from "@/types/detail";
-// import {
-//   fetchSuggestedMovies,
-//   updateFilmView,
-// } from "@/services/detail.service";
+import { MovieData } from "@/types/detail";
 import { useAuth } from "@/context/AuthContext";
 import { modalEvent } from "@/events/modal";
 import WatchPlayer from "./WatchPlayer";
@@ -113,7 +109,6 @@ export default function WatchMovie({ initialMovieData }: WatchMovieProps) {
 
           <div className="watch-container">
             <WatchMainContent movieData={initialMovieData}/>
-
             {/* side component */}
             <WatchSideContent
               title={title}

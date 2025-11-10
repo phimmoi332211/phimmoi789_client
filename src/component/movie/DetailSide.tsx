@@ -16,7 +16,6 @@ interface DetailSideProps {
 export default function DetailSide({
   movieData,
   suggestedMovies = [],
-  isLoadingSuggested = false,
 }: DetailSideProps) {
   const [showDetail, setShowDetail] = useState(false);
 
@@ -38,8 +37,8 @@ export default function DetailSide({
         </div>
       )}
       {movieData.parts && (
-        movieData.parts.map((part) => (
-          <span key={part.slug}>
+        movieData.parts.map((part, index) => (
+          <span key={index}>
             <Link href={`/phim/${part.slug}`}>{part.title}</Link>
           </span>
         ))
@@ -49,9 +48,9 @@ export default function DetailSide({
 
   const renderCategories = () => (
     <div className="hl-tags">
-      {movieData.category.map((cat) => (
+      {movieData.category.map((cat, index) => (
         <Link
-          key={cat?.slug || "#"}
+          key={index}
           className="tag-topic"
           href={`/the-loai/${cat?.slug || ""}`}
         >
@@ -136,8 +135,11 @@ export default function DetailSide({
           {renderCategories()}
           {renderStatus()}
           <div className="detail-line">
-            <div className="de-title d-block mb-2">Giới thiệu:</div>
-            <div className="description">{movieData.description}</div>
+            <div className="de-title d-block mb-2">Giới thiệu: </div>
+            <div
+              className="description "
+              dangerouslySetInnerHTML={{ __html: movieData.description }}
+            ></div>
           </div>
           {renderDetailLine("Thời lượng:", movieData.time)}
           {renderDetailLine("Quốc gia:", renderCountries())}

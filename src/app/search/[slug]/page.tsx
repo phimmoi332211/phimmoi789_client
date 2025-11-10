@@ -243,7 +243,7 @@ export default function SearchPage() {
               {!isLoading &&
                 movies.map((film, index) => (
                   <div
-                    key={film._id || index}
+                    key={index}
                     className="sw-item sw-item-custom"
                     ref={(el) => {
                       if (el) cardRefs.current[index] = el;

@@ -98,10 +98,10 @@ const List = ({
           url === "phim-le"
             ? "single"
             : url === "phim-bo"
-            ? "series"
-            : url === "phim-sap-chieu"
-            ? "upcoming"
-            : prev.type,
+              ? "series"
+              : url === "phim-sap-chieu"
+                ? "upcoming"
+                : prev.type,
       }));
 
       if ((films as any)?.data?.data?.meta) {
@@ -206,10 +206,10 @@ const List = ({
           url === "phim-le"
             ? "single"
             : url === "phim-bo"
-            ? "series"
-            : url === "phim-sap-chieu"
-            ? "upcoming"
-            : "",
+              ? "series"
+              : url === "phim-sap-chieu"
+                ? "upcoming"
+                : "",
         ...filters,
       });
       setData(res?.data as ApiResponse<Film[]>);

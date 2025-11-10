@@ -195,8 +195,8 @@ export default function CommentItem({
             </button>
             {item.showReplies && (
               <div className="replies-list">
-                {item.replies.map((reply: any) => (
-                  <div key={reply.id} className="d-item">
+                {item.replies.map((reply: any, index) => (
+                  <div key={index} className="d-item">
                     <div className="user-avatar">
                       {reply.avatar && isValidImageUrl(reply.avatar) ? (
                         <Image src={reply.avatar} alt="User avatar" width={40} height={40} />

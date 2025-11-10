@@ -71,8 +71,8 @@ export const HotType = () => {
               <div className="irt-table">
                 <div className="it-col it-big this-03">
                   <div className="chart-list">
-                    {types.map((type: any) => (
-                      <div className="item mb-[10px]" key={type.id}>
+                    {types.map((type: any, index) => (
+                      <div className="item mb-[10px]" key={index}>
                         <div className="pos">{type.position}.</div>
                         <div className={`dev dev-${type.trend}`}>
                           {type.trend === "up" && (
@@ -110,8 +110,8 @@ export const HotType = () => {
         <span className="flex-grow-1">Thể loại Hot</span>
       </div>
       <div className="chart-list">
-        {top5Types.map((type: any) => (
-          <div className="item" key={type.id}>
+        {top5Types.map((type: any, index) => (
+          <div className="item" key={index}>
             <div className="pos">{type.position}.</div>
             <div className={`dev dev-${type.trend} mr-2`}>
               {type.trend === "up" && (

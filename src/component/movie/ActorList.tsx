@@ -19,7 +19,7 @@ export default function ActorList({ actors }: ActorListProps) {
       <div className="child-box child-actors">
         <div className="child-header">Diễn viên</div>
         <div className="child-actors-list">
-          {actors.map((actor) => {
+          {actors.map((actor, index) => {
             const imageSrc =
               actor?.url && actor.url.trim() !== ""
                 ? actor.url
@@ -27,7 +27,7 @@ export default function ActorList({ actors }: ActorListProps) {
             const actorSlug =
               actor?.url && actor.url.trim() !== "" ? actor.url : "#";
             return (
-              <div key={actorSlug || actor.name} className="v-item">
+              <div key={index} className="v-item">
                 <Link
                   className="v-actor v-actor-medium"
                   href={actorSlug === "#" ? "#" : `/dien-vien/${actorSlug}`}

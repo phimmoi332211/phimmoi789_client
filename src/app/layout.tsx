@@ -5,7 +5,9 @@ import "swiper/css/navigation";
 import "swiper/css/pagination";
 import "swiper/css/scrollbar";
 import "./globals.css";
-
+import "swiper/css/effect-fade";
+import "swiper/css/thumbs";
+import "swiper/css/autoplay";
 import HeaderPage from "@/component/header/Header";
 import FooterPage from "@/component/footer/Footer";
 import AppProviders from "@/component/Providers/AppProviders";

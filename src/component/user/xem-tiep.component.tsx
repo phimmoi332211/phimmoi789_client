@@ -77,7 +77,7 @@ export default function XemTiepComponent() {
       <div className="box-body">
         <div className="cards-grid-wrapper de-suggest">
           {moviesWithWatch.map((item, idx) => (
-            <div className="sw-item" key={item.slug + idx}>
+            <div className="sw-item" key={idx}>
               <div
                 className="pin-remove"
                 onClick={() =>

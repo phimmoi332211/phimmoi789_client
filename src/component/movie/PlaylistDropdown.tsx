@@ -135,8 +135,8 @@ export default function PlaylistDropdown({
               <span className="flex-grow-1">Danh sách</span>
               <small>{playlists.length}/5</small>
             </div>
-            {playlists.map((playlist) => (
-              <li key={playlist._id}>
+            {playlists.map((playlist, index) => (
+              <li key={index}>
                 <div className="dropdown-checkbox">
                   <input
                     className="form-check-input"
@@ -218,8 +218,8 @@ export default function PlaylistDropdown({
             <span className="flex-grow-1">Danh sách</span>
             <small>{playlists.length}/5</small>
           </div>
-          {playlists.map((playlist) => (
-            <li key={playlist._id}>
+          {playlists.map((playlist, index) => (
+            <li key={index}>
               <div className="dropdown-checkbox">
                 <input
                   className="form-check-input"

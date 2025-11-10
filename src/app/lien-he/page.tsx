@@ -90,9 +90,9 @@ const ContactPage = () => {
               href: "https://x.com/ghienphimtv",
               icon: "https://www.ghienphim.me/images/social/x-icon-black.svg",
             },
-          ].map((social) => (
+          ].map((social, index) => (
             <div
-              key={social.name}
+              key={index}
               className="flex items-center bg-white text-black px-4 py-2 rounded-lg "
             >
               <Image

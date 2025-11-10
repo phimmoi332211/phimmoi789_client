@@ -136,11 +136,11 @@ export default function PlaylistComponent() {
       </div>
 
       <div className="dcc-playlist mb-5">
-        {listPlayList.map((item: any) => {
+        {listPlayList.map((item: any, index) => {
           const isActive = item._id === selectedId || item._id === hoveredId;
           return (
             <div
-              key={item._id}
+              key={index}
               className={`item ${isActive ? "active" : ""}`}
               onClick={() => setSelectedId(item._id)}
               onMouseEnter={() => setHoveredId(item._id)}

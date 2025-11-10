@@ -1,11 +1,7 @@
 "use client";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { EffectFade, Thumbs } from "swiper/modules";
-import "swiper/css";
-import "swiper/css/effect-fade";
-import "swiper/css/thumbs";
-// import { fetchAddFavorite, fetchFilmListLike } from "@/help/helper";
 import { toast } from "react-toastify";
 import { useAuth } from "@/context/AuthContext";
 import Image from "next/image";
@@ -69,18 +65,11 @@ export default function AnimeSlide({
   const { authUser } = useAuth();
   const [films, setFilms] = useState<any[]>([]);
 
-  useEffect(() => {
-    // fetchFilmListLike().then((res: any) => {
-    //   setFilms(res?.data?.favorite || []);
-    // });
-  }, []);
-
   const isFavorite = (slug: string) => films.some((film) => film.slug === slug);
 
   const handleToggleFavorite = async (slug: string) => {
     const favorite = isFavorite(slug);
     try {
-      // await fetchAddFavorite(slug, !favorite);
       toast.success(
         favorite ? "Đã bỏ khỏi yêu thích!" : "Đã thêm vào yêu thích!"
       );

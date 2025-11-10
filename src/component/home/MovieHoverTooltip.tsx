@@ -4,12 +4,12 @@ import Link from "next/link";
 import { toast } from "react-toastify";
 import { NAVIGATION } from "@/ultis/ultis";
 import { useFavorite } from "@/context/FavoriteContext";
-import { Film } from "@/types/model/film.d";
 import { useAuth } from "@/context/AuthContext";
 import { toAbsoluteImageUrl } from "@/help/helper";
+import { MovieListData } from "@/types/detail";
 
 interface MovieHoverTooltipProps {
-  movie: Film;
+  movie: MovieListData;
 }
 
 // Tạo Portal Tooltip (nếu bạn dùng)
@@ -23,23 +23,22 @@ export const MovieHoverTooltip: React.FC<MovieHoverTooltipProps> = ({
   movie,
 }) => {
   // Chuẩn hoá dữ liệu giống như SlideFilm
-  const mapSlug = (item: any) => item.slug || item.url || "";
-  const mapTitle = (item: any) => item.title || item.name || "";
-  const mapAlias = (item: any) =>
-    item.name_english || item.origin_name || item.name || "";
-  const mapPoster = (item: any) =>
-    toAbsoluteImageUrl(item.poster_url || item.thumbnail) ||
-    "/default-avatar.jpg";
-  const mapCountryName = (item: any) =>
-    item.country?.[0]?.name || item.country?.name || "";
+  const mapSlug = (item: MovieListData) => item.slug ||  "";
+  const mapTitle = (item: MovieListData) => item.title || "";
+  const mapAlias = (item: MovieListData) =>
+    item.name_english || item.origin_name || item.title || "";
+  const mapPoster = (item: MovieListData) =>
+    toAbsoluteImageUrl(item?.image?.url ||"/default-avatar.jpg");
+  const mapCountryName = (item: MovieListData) =>
+    item.country?.[0]?.name|| "";
 
   // Tính số tập cho giao diện hiện tại
-  const getEpisodeInfo = (item: any) => {
+  const getEpisodeInfo = (item: MovieListData) => {
     // Dữ liệu mới (type/total_episode/status)
-    if (item?.type || item?.total_episode || item?.status) {
+    if (item?.type || item?.episode_total || item?.status) {
       const episodes =
-        typeof item.total_episode === "number" && item.total_episode > 0
-          ? item.total_episode
+        typeof item.episode_total === "number" && item.episode_total > 0
+          ? item.episode_total
           : item.type === "single"
           ? 1
           : 0;
@@ -97,8 +96,8 @@ export const MovieHoverTooltip: React.FC<MovieHoverTooltipProps> = ({
   // Sử dụng các hàm map để chuẩn hoá dữ liệu
   const normalizedMovie = {
     ...movie,
-    url: mapSlug(movie),
-    name: mapTitle(movie),
+    slug: mapSlug(movie),
+    title: mapTitle(movie),
     origin_name: mapAlias(movie),
     thumbnail: mapPoster(movie),
   };
@@ -118,20 +117,20 @@ export const MovieHoverTooltip: React.FC<MovieHoverTooltipProps> = ({
         </div>
         <div className="media-item">
           <div className="video-title-group">
-            <div className="media-title">{normalizedMovie.name}</div>
+            <div className="media-title">{normalizedMovie.title}</div>
             <div className="alias-title">{normalizedMovie.origin_name}</div>
           </div>
 
           <div className="touch-group">
             <Link
               className="btn btn-block btn-primary"
-              href={`${NAVIGATION.INFO}/${normalizedMovie.url}`}
+              href={`${NAVIGATION.INFO}/${normalizedMovie.slug}`}
             >
               <i className="fa-solid fa-play"></i>Xem ngay
             </Link>
             <button
               className="btn btn-outline"
-              onClick={() => handleToggleFavorite(normalizedMovie.url)}
+              onClick={() => handleToggleFavorite(normalizedMovie.slug)}
             >
               <div className="inc-icon icon-14">
                 <svg
@@ -161,7 +160,7 @@ export const MovieHoverTooltip: React.FC<MovieHoverTooltipProps> = ({
             </button>
             <Link
               className="btn btn-outline"
-              href={`${NAVIGATION.INFO}/${normalizedMovie.url}`}
+              href={`${NAVIGATION.INFO}/${normalizedMovie.slug}`}
             >
               <div className="inc-icon icon-14">
                 <svg

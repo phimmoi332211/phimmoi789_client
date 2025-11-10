@@ -1,12 +1,3 @@
-//src/types/list.d.ts
-export interface FilterState {
-  type: string;
-  country: string;
-  year: string;
-  order: string;
-  category: string;
-}
-
 export interface Film {
   id: string;
   slug: string;
@@ -29,10 +20,4 @@ export interface ApiResponse<T> {
     result: T;
     meta?: Meta;
   };
-}
-
-export interface Category {
-  id?: string;
-  url: string;
-  name: string;
 }

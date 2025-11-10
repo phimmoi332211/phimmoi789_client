@@ -11,6 +11,7 @@ interface WatchMoviePageProps {
 export default async function WatchMoviePage({ params }: WatchMoviePageProps) {
   try {
     const { slug } = await params;
+    const page = 12;
     // Fetch film detail
     const filmResponse = await fetchDetailsMovies(slug);
     const payload = (filmResponse as any)?.data;
@@ -18,7 +19,7 @@ export default async function WatchMoviePage({ params }: WatchMoviePageProps) {
       return <WatchMovie />;
     }
 
-    const similarMovies = await fetchSimilarMovies(slug);
+    const similarMovies = await fetchSimilarMovies(slug, page);
     const payloadSimilarMovies = (similarMovies as any)?.data?.data;
     if (!payloadSimilarMovies) {
       throw new Error("Failed to fetch similar movies");
@@ -84,7 +85,6 @@ export default async function WatchMoviePage({ params }: WatchMoviePageProps) {
 
     return <WatchMovie initialMovieData={enhancedData}/>;
   } catch (error) {
-    // console.error("Error loading movie data:", error);
     return <WatchMovie />;
   }
 }

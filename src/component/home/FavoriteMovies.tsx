@@ -46,10 +46,10 @@ const TrendingMoviesModal = ({ show, onClose, movies }: any) => {
             <div className="irt-table">
               <div className="it-col it-big">
                 <div className="chart-list">
-                  {movies.map((movie: any) => (
+                  {movies.map((movie: any, index) => (
                     <div
                       className="item flex items-center mb-2"
-                      key={movie.pos}
+                      key={index}
                     >
                       <div className="pos w-6 text-center font-bold">
                         {movie.pos}.
@@ -129,8 +129,8 @@ export const FavoriteMovies = () => {
         <span className="flex-grow-1">Yêu thích nhất</span>
       </div>
       <div className="chart-list">
-        {top5Movies.map((movie) => (
-          <div className="item flex items-center mb-1" key={movie.pos}>
+        {top5Movies.map((movie, index) => (
+          <div className="item flex items-center mb-1" key={index}>
             <div className="pos w-6 text-center font-bold">{movie.pos}.</div>
             <div className={`dev dev-${movie.trend} mr-2`}>
               {movie.trend === "up" && (

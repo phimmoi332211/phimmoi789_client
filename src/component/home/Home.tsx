@@ -1,30 +1,10 @@
 import BannerSlide from "@/component/home/BannerSlide";
-import MovieList from "./TopPhimTop";
+import MovieList from "./TopFilmTop";
 import SlideFilm from "./SlideFilm";
 import Top10 from "./top10";
 import AnimeSlide from "./Anime";
 import { fetchBannerList, fetchMovies } from "@/help/helper";
-import { Define } from "@/types/define";
-import Film = Define.Film;
 import Image from "next/image";
-
-// Mảng màu để convert
-const hotAndCoolColors = [
-  "rgb(229, 57, 53)",
-  "rgb(251, 140, 0)",
-  "rgb(255, 193, 7)",
-  "rgb(56, 183, 61)",
-  "rgb(255, 87, 34)",
-  "rgb(30, 136, 229)",
-  "rgb(233, 30, 99)",
-  "rgb(156, 39, 176)",
-  "rgb(244, 67, 54)",
-  "rgb(85, 187, 120)",
-  "rgb(41, 121, 255)",
-  "rgb(255, 152, 0)",
-  "rgb(255, 61, 0)",
-  "rgb(58, 27, 216)",
-];
 
 export default async function HomePage() {
   // // Lấy phim banner
@@ -121,11 +101,10 @@ export default async function HomePage() {
       </div>
       <BannerSlide slideData={slideData} />
       <MovieList
-        hanMovies={koreaMovies}
-        trungMovies={chinaMovies}
-        aumyMovies={usaMovies}
+        koreaMovies={koreaMovies}
+        chinaMovies={chinaMovies}
+        usaMovies={usaMovies}
       />
-      {/* <Community /> */}
       <SlideFilm movies={slideMoviesData} />
       <Top10 movies={movieSeriesData} title={"Top 10 phim bộ hay nhất hôm nay/ tuần này/ tháng này"} />
       <Top10 movies={movieSingleData} title={"Top 10 phim lẻ hay nhất hôm nay/ tuần này/ tháng này"} />

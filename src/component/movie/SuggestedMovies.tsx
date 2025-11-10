@@ -28,8 +28,8 @@ export default function SuggestedMovies({ movies }: SuggestedMoviesProps) {
                   <div className="v-thumb-m">
                     <Link className="v-thumbnail" href={`/phim/${movie.slug}`}>
                       <Image 
-                        alt={movie.featuredImage.alt}
-                        src={movie.featuredImage.url ||"/default-avatar.jpg"}
+                        alt={movie?.featuredImage?.alt || "default-avatar"}
+                        src={movie?.featuredImage?.url ||"/default-avatar.jpg"}
                         width={300}
                         height={450}
                         loading="lazy"

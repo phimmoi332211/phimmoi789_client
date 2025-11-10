@@ -2,12 +2,14 @@
 "use client";
 
 import React, { useState } from "react";
-import { Category, FilterState } from "@/types/list";
+import { FilterState } from "@/types/param/filterState.param";
+import { CategoryModel } from "@/types/model/category.d";
+import { CountryModel } from "@/types/model/country.d";
 
 interface FilterControlsProps {
   filters: FilterState;
-  typeList: Category[];
-  countryList: Category[];
+  typeList: CategoryModel[];
+  countryList: CountryModel[];
   onFilterChange: (e: React.ChangeEvent<HTMLSelectElement>) => void;
   onFilterSearch: () => void;
 }
@@ -42,11 +44,11 @@ export default function FilterControls({
           <div className="fe-name">Quốc gia:</div>
           <div className="fe-results">
             <div
-              className={`item ${filters.country === "" ? "active" : ""}`}
+              className={`item ${filters.movieCountry === "" ? "active" : ""}`}
               onClick={() =>
                 onFilterChange({
                   target: {
-                    name: "country",
+                    name: "movieCountry",
                     value: "",
                   },
                 } as React.ChangeEvent<HTMLSelectElement>)
@@ -58,13 +60,13 @@ export default function FilterControls({
               <div
                 key={index}
                 className={`item ${
-                  filters.country === item.url ? "active" : ""
+                  filters.movieCountry === item.slug ? "active" : ""
                 }`}
                 onClick={() =>
                   onFilterChange({
                     target: {
-                      name: "country",
-                      value: item.url,
+                      name: "movieCountry",
+                      value: item.slug,
                     },
                   } as React.ChangeEvent<HTMLSelectElement>)
                 }
@@ -78,11 +80,11 @@ export default function FilterControls({
           <div className="fe-name">Loại phim:</div>
           <div className="fe-results">
             <div
-              className={`item ${filters.category === "" ? "active" : ""}`}
+              className={`item ${filters.movieCategory === "" ? "active" : ""}`}
               onClick={() =>
                 onFilterChange({
                   target: {
-                    name: "category",
+                    name: "movieCategory",
                     value: "",
                   },
                 } as React.ChangeEvent<HTMLSelectElement>)
@@ -92,12 +94,12 @@ export default function FilterControls({
             </div>
             <div
               className={`item ${
-                filters.category === "phim-le" ? "active" : ""
+                filters.movieCategory === "phim-le" ? "active" : ""
               }`}
               onClick={() =>
                 onFilterChange({
                   target: {
-                    name: "category",
+                    name: "movieCategory",
                     value: "phim-le",
                   },
                 } as React.ChangeEvent<HTMLSelectElement>)
@@ -107,12 +109,12 @@ export default function FilterControls({
             </div>
             <div
               className={`item ${
-                filters.category === "phim-bo" ? "active" : ""
+                filters.movieCategory === "phim-bo" ? "active" : ""
               }`}
               onClick={() =>
                 onFilterChange({
                   target: {
-                    name: "category",
+                    name: "movieCategory",
                     value: "phim-bo",
                   },
                 } as React.ChangeEvent<HTMLSelectElement>)
@@ -126,11 +128,11 @@ export default function FilterControls({
           <div className="fe-name">Thể loại:</div>
           <div className="fe-results">
             <div
-              className={`item ${filters.type === "" ? "active" : ""}`}
+              className={`item ${filters.movieCategory === "" ? "active" : ""}`}
               onClick={() =>
                 onFilterChange({
                   target: {
-                    name: "type",
+                    name: "movieCategory",
                     value: "",
                   },
                 } as React.ChangeEvent<HTMLSelectElement>)
@@ -141,12 +143,12 @@ export default function FilterControls({
             {typeList?.map((item, index) => (
               <div
                 key={index}
-                className={`item ${filters.type === item.url ? "active" : ""}`}
+                className={`item ${filters.movieCategory === item.slug ? "active" : ""}`}
                 onClick={() =>
                   onFilterChange({
                     target: {
-                      name: "type",
-                      value: item.url,
+                      name: "movieCategory",
+                      value: item.slug,
                     },
                   } as React.ChangeEvent<HTMLSelectElement>)
                 }
@@ -199,11 +201,11 @@ export default function FilterControls({
           <div className="fe-results">
             {/*<div className="item ">Tất cả</div>*/}
             <div
-              className={`item ${filters.order === "" ? "active" : ""}`}
+              className={`item ${filters.sortBy === "" ? "active" : ""}`}
               onClick={() =>
                 onFilterChange({
                   target: {
-                    name: "order",
+                    name: "sortBy",
                     value: "",
                   },
                 } as React.ChangeEvent<HTMLSelectElement>)
@@ -212,12 +214,12 @@ export default function FilterControls({
               Tất cả
             </div>
             <div
-              className={`item ${filters.order === "3" ? "active" : ""}`}
+              className={`item ${filters.sortBy === "newest" ? "active" : ""}`}
               onClick={() =>
                 onFilterChange({
                   target: {
-                    name: "order",
-                    value: "3",
+                    name: "sortBy",
+                    value: "newest",
                   },
                 } as React.ChangeEvent<HTMLSelectElement>)
               }
@@ -225,12 +227,12 @@ export default function FilterControls({
               Thời gian cập nhật
             </div>
             <div
-              className={`item ${filters.order === "2" ? "active" : ""}`}
+              className={`item ${filters.sortBy === "most_viewed" ? "active" : ""}`}
               onClick={() =>
                 onFilterChange({
                   target: {
-                    name: "order",
-                    value: "2",
+                    name: "sortBy",
+                    value: "most_viewed",
                   },
                 } as React.ChangeEvent<HTMLSelectElement>)
               }
@@ -238,12 +240,12 @@ export default function FilterControls({
               Lượt xem
             </div>
             <div
-              className={`item ${filters.order === "1" ? "active" : ""}`}
+              className={`item ${filters.sortBy === "oldest" ? "active" : ""}`}
               onClick={() =>
                 onFilterChange({
                   target: {
-                    name: "order",
-                    value: "1",
+                    name: "sortBy",
+                    value: "oldest",
                   },
                 } as React.ChangeEvent<HTMLSelectElement>)
               }

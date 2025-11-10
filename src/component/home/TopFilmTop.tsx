@@ -2,18 +2,14 @@
 import React, { useRef, useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, Navigation } from "swiper/modules";
-import "swiper/css";
-import "swiper/css/navigation";
 import { MovieHoverTooltip, PortalTooltip } from "./MovieHoverTooltip";
 import Link from "next/link";
 import Image from "next/image";
 import { toAbsoluteImageUrl } from "@/help/helper";
-// import Film = Define.Film;
 
 export interface MovieCategory {
   title: string;
   gradient: string;
-  // movies nhận dữ liệu “thô” từ API mới
   movies: any[];
   slug: string;
 }
@@ -26,8 +22,8 @@ type NormalizedMovie = {
   image_alt: string;
   image_caption: string;
   image_title: string;
-  episode_total: string; // ví dụ "26 Tập" hoặc "1 Tập"
-  status_label: string; // "Hoàn Tất" | "Đang Chiếu" | ...
+  episode_total: string;
+  status_label: string;
   quality?: string;
 };
 
@@ -317,36 +313,36 @@ const MovieSlider: React.FC<MovieSliderProps> = ({ category }) => {
 };
 
 interface MovieListProps {
-  hanMovies: any[];
-  trungMovies: any[];
-  aumyMovies: any[];
+  koreaMovies: any[];
+  chinaMovies: any[];
+  usaMovies: any[];
 }
 
 const MovieList: React.FC<MovieListProps> = ({
-  hanMovies,
-  trungMovies,
-  aumyMovies,
+  koreaMovies,
+  chinaMovies,
+  usaMovies,
 }) => {
   const movieCategories: MovieCategory[] = [
     {
       title: "Phim Hàn Quốc mới",
       gradient:
         "linear-gradient(235deg, rgb(255, 255, 255) 30%, rgb(103, 65, 150) 130%)",
-      movies: hanMovies,
+      movies: koreaMovies,
       slug: "/quoc-gia/han-quoc",
     },
     {
       title: "Phim Trung Quốc mới",
       gradient:
         "linear-gradient(235deg, rgb(255, 255, 255) 30%, rgb(247, 161, 11) 130%)",
-      movies: trungMovies,
+      movies: chinaMovies,
       slug: "/quoc-gia/trung-quoc",
     },
     {
       title: "Phim US-UK mới",
       gradient:
         "linear-gradient(235deg, rgb(255, 255, 255) 30%, rgb(255, 0, 153) 130%)",
-      movies: aumyMovies,
+      movies: usaMovies,
       slug: "/quoc-gia/au-my",
     },
   ];

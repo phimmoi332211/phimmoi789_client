@@ -19,8 +19,8 @@ export default function TabGallery({ movieData }: TabGalleryProps) {
         <div className="heading-sm mb-3">Videos</div>
         {videos.length > 0 ? (
           <div className="videos-grid">
-            {videos.map((video) => (
-              <Link key={video.id} href={video.url} className="media-item">
+            {videos.map((video, index) => (
+              <Link key={index} href={video.url} className="media-item">
                 <Image 
                   alt={video.title || 'Video thumbnail'} 
                   src={video.thumbnail || video.url} 

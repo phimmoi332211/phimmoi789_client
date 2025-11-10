@@ -19,9 +19,9 @@ export default function CommentList({
 }: any) {
   return (
     <div className="discuss-list">
-      {items.map((item: any) => (
+      {items.map((item: any, index) => (
         <CommentItem
-          key={item.id}
+          key={index}
           item={item}
           activeTab={activeTab}
           authUser={authUser}

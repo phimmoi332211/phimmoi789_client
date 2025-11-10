@@ -1,5 +1,4 @@
 export const CLIENT_ENDPOINTS = {
-  
   MENU: '/menus',
   ///ophim69
   PUBLICS: {
@@ -14,7 +13,7 @@ export const CLIENT_ENDPOINTS = {
       LIST: "/publics/categories",
     },
     COUNTRIES: {
-      LIST: "/publics/countries",
+      LIST: "/countries/all",
     },
     ACTOR: {
       LIST: "/publics/actors",

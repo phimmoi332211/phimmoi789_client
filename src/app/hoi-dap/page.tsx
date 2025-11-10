@@ -136,7 +136,7 @@ const FaqList = () => {
       </h2>
       <ul className="list-decimal list-inside mb-10 space-y-2 text-white border border-r-8 border-white p-4 rounded-lg">
         {faqData.map((faq, index) => (
-          <li key={faq.id}>
+          <li key={index}>
             <Link href={`#${faq.id}`} className="hover:underline">
               {faq.question}
             </Link>
@@ -146,7 +146,7 @@ const FaqList = () => {
 
       <div className="space-y-8">
         {faqData.map((faq, index) => (
-          <div key={faq.id} id={faq.id} className="scroll-mt-24">
+          <div key={index} id={faq.id} className="scroll-mt-24">
             <h3 className="text-xl font-semibold text-primary mb-2">
               {index + 1 + ". "}
               {faq.question}

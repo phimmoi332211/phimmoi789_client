@@ -51,9 +51,9 @@ export default function WatchMainContent({ movieData }: WatchMainContentProps) {
               </div>
             </div>
             <div className="hl-tags">
-              {movieData?.category.map((category) => (
+              {movieData?.category.map((category, index) => (
                 <Link
-                  key={category.slug}
+                  key={index}
                   className="tag-topic"
                   href={`/the-loai/${category.slug}`}
                 >
@@ -64,7 +64,10 @@ export default function WatchMainContent({ movieData }: WatchMainContentProps) {
           </div>
         </div>
         <div className="desc-line">
-          <div className="description lim-3">{movieData?.description}</div>
+          <div
+              className="description lim-3 "
+              dangerouslySetInnerHTML={{ __html: movieData.description }}
+            ></div>
           <Link className="text-primary" href={`/phim/${movieData?.slug}`}>
             Thông tin phim <i className="fa-solid fa-angle-right small me-2"></i>
           </Link>

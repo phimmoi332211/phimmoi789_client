@@ -22,8 +22,8 @@ const TopicGrid: React.FC<TopicGridProps> = ({ topics }) => {
           </div>
           <div className="row-content">
             <div className="topics-list topics-grid">
-              {topics.map((topic: Topic) => (
-                <Link key={topic.id} className="row-topic" href={topic.href}>
+              {topics.map((topic: Topic, index) => (
+                <Link key={index} className="row-topic" href={topic.href}>
                   <div
                     className="mask"
                     style={{ backgroundColor: topic.backgroundColor }}

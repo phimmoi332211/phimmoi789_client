@@ -18,17 +18,18 @@ const PhimBoList = async ({ params }: Props) => {
   const types = resType?.data?.data || [];
 
   const filmsRes: any = await fetchMovies({
-    limit: pageSize,
     page: 1,
-    type: "phim-bo",
-  });
-  const filmsData = filmsRes?.data?.data || { meta: {}, result: [] };
-  const totalPage = filmsData?.meta?.totalPages || 1;
+    limit: pageSize,
+    type: "series",
+  }).catch(() => ({ data: { data: { result: [] } } }));
+
+  const filmsData = filmsRes.data?.movies || [];;
+  const totalPage = filmsRes?.meta?.totalPages || 1;
 
   return (
     <List
-      url={"phim-bo"}
-      films={filmsRes?.data}
+      url={"series"}
+      films={filmsData}
       totalPage={totalPage}
       countries={countries}
       types={types}

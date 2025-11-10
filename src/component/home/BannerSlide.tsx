@@ -2,9 +2,6 @@
 import { useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { EffectFade, Thumbs } from "swiper/modules";
-import "swiper/css";
-import "swiper/css/effect-fade";
-import "swiper/css/thumbs";
 import { toast } from "react-toastify";
 import { useAuth } from "@/context/AuthContext";
 import Image from "next/image";
@@ -158,9 +155,9 @@ export default function BannerSlide({ slideData }: BannerSlideProps) {
                         </div>
 
                         <div className="hl-tags mb-4">
-                          {tags.map((tag, i) => (
+                          {tags.map((tag, index) => (
                             <Link
-                              key={i}
+                              key={index}
                               className="tag-topic"
                               href={`/list/${slugify(tag.url)}`}
                             >
@@ -226,9 +223,9 @@ export default function BannerSlide({ slideData }: BannerSlideProps) {
           watchSlidesProgress
           className="swiper top-slide-small swiper-thumbs"
         >
-          {slideData.map((item) => (
+          {slideData.map((item, index) => (
             <SwiperSlide
-              key={item._id}
+              key={index}
               className="swiper-slide"
               style={{ width: "64.5px", marginRight: "5px" }}
             >

@@ -30,6 +30,37 @@ export interface SuggestedMoviesResponse {
   };
 }
 
+export interface MovieListData {
+  _id?: string;
+  year?: string;
+  viewCount?: number;
+  updatedAt?: string;
+  type?: string;
+  title?: string;
+  status?: string;
+  slug?: string;
+  origin_name?: string;
+  movieType?: string;
+  movieStatus?: string;
+  image?: Images;
+  film_description?: string;
+  directors?: Array<{
+    id?: string;
+    name?: string;
+    character?: string;
+    image?: string;
+  }>;
+  description?: string;
+  createdAt?: string;
+  country?: Array<{ name?: string; slug?: string }>;
+  category?: Array<{ name?: string; slug?: string }>;
+  actors?: Array<{ name?: string; slug?: string }>;
+  quality?: string;
+  episode_total?: string;
+  duration?: string;
+  name_english?: string;
+}
+
 export interface MovieData {
   _id?: string;
   title?: string;

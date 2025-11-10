@@ -1,8 +1,8 @@
 //src/types/list.d.ts
 export interface FilterState {
   type: string;
-  country: string;
+  movieCountry: string;
+  movieCategory: string;
   year: string;
-  order: string;
-  category: string;
+  sortBy: string;
 }

@@ -118,7 +118,7 @@ export default function FavoriteComponent() {
               {films && films.length > 0 ? (
                 films.map((film: Film, index: number) => (
                   <div
-                    key={film.slug || index}
+                    key={index}
                     className="sw-item sw-item-custom"
                     ref={(el: HTMLDivElement | null) => {
                       if (el) {
@@ -210,7 +210,7 @@ export default function FavoriteComponent() {
             <div className="de-actors">
               {casts && casts.length > 0 ? (
                 casts.map((actor: Actor, idx: number) => (
-                  <div key={actor.slug || idx} className="item-actor">
+                  <div key={idx} className="item-actor">
                     <div className="v-item">
                       <Link
                         className="v-actor"

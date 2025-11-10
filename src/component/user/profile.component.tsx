@@ -387,8 +387,8 @@ export default function UserProfileComponent() {
               className="v-tabs v-tabs-min tab-trans mb-4 nav nav-pills"
               role="tablist"
             >
-              {avatarTabs.map((tab) => (
-                <div key={tab.id} className="nav-item">
+              {avatarTabs.map((tab, index) => (
+                <div key={index} className="nav-item">
                   <div
                     role="tab"
                     aria-selected={activeTab === tab.id}
@@ -407,9 +407,9 @@ export default function UserProfileComponent() {
             </div>
 
             {/* Tab content */}
-            {avatarTabs.map((tab) => (
+            {avatarTabs.map((tab, index) => (
               <div
-                key={tab.id}
+                key={index}
                 className={`${activeTab === tab.id ? "d-block" : "d-none"}`}
               >
                 <div className="avatar-list d-flex flex-wrap gap-2">
@@ -469,9 +469,9 @@ export default function UserProfileComponent() {
                       </div>
                     </div>
                   ) : (
-                    tab.images.map((img) => (
+                    tab.images.map((img, index) => (
                       <div
-                        key={img}
+                        key={index}
                         style={{
                           border:
                             tempAvatar === img

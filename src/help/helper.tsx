@@ -89,12 +89,12 @@ export const fetchDetailsMovies = async (slug: string) => {
   return customFetch(CLIENT_ENDPOINTS.PUBLICS.MOVIES.DETAIL(`${slug}`), "GET");
 };
 
-export const fetchSimilarMovies = async (slug: string) => {
-  return customFetch(CLIENT_ENDPOINTS.PUBLICS.MOVIES.DETAIL(`${slug}/with-similar?limit=12`), "GET");
+export const fetchSimilarMovies = async (slug: string, page: number) => {
+  return customFetch(CLIENT_ENDPOINTS.PUBLICS.MOVIES.DETAIL(`${slug}/with-similar?limit=${page}`), "GET");
 };
 
-export const fetchContries = async ({ limit = 10 }: { limit: number }) => {
-  return customFetch(CLIENT_ENDPOINTS.PUBLICS.COUNTRIES.LIST, "GET", { limit });
+export const fetchCountries = async () => {
+  return customFetch(CLIENT_ENDPOINTS.PUBLICS.COUNTRIES.LIST, "GET");
 };
 
 export const postRating = async (data: any) => {

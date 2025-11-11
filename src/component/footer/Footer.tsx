@@ -10,7 +10,7 @@ export default function FooterPage() {
         <div>
           <div className="flex flex-col md:flex-row md:items-center gap-4 mb-6">
             <div className="flex items-center justify-center md:justify-start">
-              <Link href="/" className="footer-logo">
+              <Link href="phim-hay" className="footer-logo">
                 <Image
                   src="/logo.webp"
                   alt="PHIMMOI789 Logo"
@@ -22,26 +22,26 @@ export default function FooterPage() {
             </div>
 
             <nav className="flex flex-wrap justify-center md:justify-start gap-x-4 gap-y-2 text-sm text-gray-300 mt-3 md:mt-0">
-              <Link href="/intro" className="hover:text-white transition">
+              <Link href="#" className="hover:text-white transition">
                 Giới thiệu
               </Link>
-              <Link href="/terms" className="hover:text-white transition">
+              <Link href="#" className="hover:text-white transition">
                 Điều khoản
               </Link>
-              <Link href="/privacy-policy" className="hover:text-white transition">
+              <Link href="#" className="hover:text-white transition">
                 Bảo mật
               </Link>
-              <Link href="/contact" className="hover:text-white transition">
+              <Link href="#" className="hover:text-white transition">
                 Liên hệ
               </Link>
-              <a
-                href="https://hotro.tv360.vn/index.html"
+              <Link
+                href="#"
                 target="_blank"
                 rel="noreferrer"
                 className="hover:text-white transition"
               >
                 Hướng dẫn
-              </a>
+              </Link>
             </nav>
           </div>
 

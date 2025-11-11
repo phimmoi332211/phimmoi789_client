@@ -317,8 +317,6 @@ export default function WatchPlayer({
     backgroundColor: "#000",
   });
 
-  console.log("embedUrlembedUrlembedUrl", embedUrl);
-  
   return (
     <div className="watch-player">
       <div className="wp-bread line-center">

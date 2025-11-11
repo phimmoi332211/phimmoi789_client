@@ -17,7 +17,6 @@ type HeaderPageProps = {
 
 export default function HeaderPage({ menuList }: HeaderPageProps) {
   const menus = menuList.data.menuTree || [];
-  console.log("menuList.data.menuTree", menuList.data.menuTree);
   
   const router = useRouter();
   const [keyword, setKeyword] = useState("");

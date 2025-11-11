@@ -12,7 +12,6 @@ interface TabEpisodesProps {
 }
 
 export default function TabEpisodes({ movieData }: TabEpisodesProps) {
-  const params = useParams();
   const searchParams = useSearchParams();
   const [isCollapsed, setIsCollapsed] = useState(true);
   const [currentEpNumber, setCurrentEpNumber] = useState("1");
@@ -33,8 +32,6 @@ export default function TabEpisodes({ movieData }: TabEpisodesProps) {
   }
 
   useEffect(() => {
-    console.log("params.slug", params);
-    
     setCurrentEpNumber(searchParams.get("tap") ?? "1");
   }, [searchParams]);
 
